@@ -5,8 +5,7 @@
 ### My Projects
 
 [Rakassan Smart App](https://docs.google.com/presentation/d/1jdpdSmWhf6Zf6ZfYyK0LCfuuFsPruXbdOniMyxay63g/edit?usp=sharing)
-#### Check out the React Native app I developed alongside a team
-#### for the 3rd Brigade (Rakkasans) of the 101st Airborne Division
+#### Check out the React Native app I developed alongside a team for the 3rd Brigade (Rakkasans) of the 101st Airborne Division
 <img src="images/rakapp.png?raw=true"/>
 
 ---
