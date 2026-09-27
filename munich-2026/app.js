@@ -297,31 +297,54 @@ const PLACE_META = {
  "Zephyr Bar":{rating:"4.8",reserve:"Walk-in"},
  "Ory Bar":{rating:"4.1",reserve:"Reservation recommended"},
  "Ballabeni Ice Cream Stammhaus":{rating:"4.5"},
- "Rischart at München Hbf":{rating:"3.2"},
- "Rischart at Hbf":{rating:"3.2"},
- "Café Frischhut":{rating:"4.4",reserve:"Walk-in"},
+ "Rischart at München Hbf":{rating:"3.2",reserve:"Walk-in"},
+ "Rischart at Hbf":{rating:"3.2",reserve:"Walk-in"},
+ "Café Frischhut":{rating:"4.5",reserve:"Walk-in"},
  "Max’s Beef Noodles":{rating:"4.6",reserve:"Walk-in"},
  "Andy’s Krablergarten":{rating:"4.4",reserve:"Walk-in only"},
  "Airbräu":{rating:"3.8"},
- "Mauerer":{rating:"3.8"},
- "Wimmer":{rating:"4.2"},
+ "Mauerer":{rating:"3.8",reserve:"Walk-in"},
+ "Wimmer":{rating:"4.2",reserve:"Walk-in"},
  "ALIS SUPERFOOD":{rating:"4.6",reserve:"Walk-in"},
- "Eibsee Pavillon":{rating:"3.3",reserve:"Reservations accepted"},
+ "Eibsee Pavillon":{rating:"3.3",reserve:"Walk-in possible"},
  "Gasthaus zur Schranne":{rating:"4.3",reserve:"Reservation recommended"},
- "Pacha Munich":{rating:"2.4",reserve:"VIP/table reservation available"}
+ "Pacha Munich":{rating:"2.4",reserve:"VIP/table reservation available"},
+ "Viktualienmarkt":{rating:"4.5",reserve:"Walk-in"},
+ "Viktualienmarkt stalls":{rating:"4.5",reserve:"Walk-in"},
+ "Hofbräuhaus":{rating:"4.0",reserve:"Large-group walk-in available"},
+ "Rischart Café am Markt":{rating:"3.4",reserve:"Walk-in"},
+ "Brotraum":{rating:"4.1",reserve:"Walk-in"},
+ "Eibsee Alm":{rating:"4.4",reserve:"Walk-in accepted"},
+ "Radio Wunder":{rating:"New",reserve:"Walk-in"},
+ "Airbräu":{rating:"3.8",reserve:"Walk-in"},
+ "Käfer Bistro":{rating:"3.2",reserve:"Reservation recommended"},
+ "Backstube Wünsche / bakery":{rating:"4.0",reserve:"Walk-in"}
 };
 function metaBadges(name){
  const m=PLACE_META[name]; if(!m) return "";
- return '<div class="badges placebadges">'+(m.rating?'<span class="badge rating">★ '+m.rating+'</span>':'')+(m.reserve?'<span class="badge reserve">'+m.reserve+'</span>':'')+'</div>';
+ return '<div class="badges placebadges">'+(m.rating?'<span class="badge rating">'+(m.rating==="New"?"New":"★ "+m.rating)+'</span>':'')+(m.reserve?'<span class="badge reserve">'+m.reserve+'</span>':'')+'</div>';
 }
 function mapsButtons(q){
  const enc=encodeURIComponent(q);
  return '<div class="maps"><a class="mapbtn" href="https://maps.apple.com/?q='+enc+'">Apple</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query='+enc+'">Google</a></div>';
 }
+const GROUP_WALKIN = {
+ wed:{breakfast:{name:"Viktualienmarkt stalls",desc:"Easy no-reservation fallback that can absorb a big group by splitting across stalls.",get:"Grab-and-go breakfast/market snacks.",q:"Viktualienmarkt Munich"},lunch:{name:"Hofbräuhaus",desc:"Huge historic beer hall with ground-floor walk-in seating; useful if the full group wants one place.",get:"Roast pork, schnitzel, sausage or pretzel + beer.",q:"Hofbräuhaus München"},dinner:{name:"Hofbräuhaus",desc:"Large-capacity walk-in fallback if reservations fall apart.",get:"Classic Bavarian beer-hall dinner.",q:"Hofbräuhaus München"}},
+ thu:{breakfast:{name:"Rischart at Hbf",desc:"Fast walk-in station bakery for either branch.",get:"Coffee + pastry/pretzel + savory item.",q:"Rischart München Hauptbahnhof"},lunch:{name:"Eibsee Alm",desc:"Walk-ins accepted and good for groups on the driving branch.",get:"Kaiserschmarrn or a Bavarian lunch.",q:"Eibsee Alm"},dinner:{name:"Hofbräuhaus",desc:"Large-group walk-in backup before the match if the group wants one easy Munich option.",get:"Keep the meal relatively quick.",q:"Hofbräuhaus München"}},
+ fri:{breakfast:{name:"Wimmer",desc:"Simple walk-in bakery option before rental pickup.",get:"Pretzel/roll + coffee.",q:"Privat Bäckerei Wimmer Lindwurmstraße Munich"},lunch:{name:"Hofbräu-Festzelt meal",desc:"Already reserved and included; this is the group lunch.",get:"Eat the included meal."},dinner:{name:"Festival food stand",desc:"No-reservation group fallback inside the festival.",get:"Roast chicken, sausage or pretzel."}},
+ sat:{breakfast:{name:"Rischart at Hbf",desc:"Walk-in station bakery before the S2.",get:"Coffee + pastry/pretzel + savory item.",q:"Rischart München Hauptbahnhof"},lunch:{name:"Augustiner-Keller",desc:"Large traditional venue near Hbf; best walk-in-style fallback for the group after Dachau.",get:"Keep lunch lighter before the 16:30 tent meal.",q:"Augustiner-Keller Munich"},dinner:{name:"Ochsenbraterei meal",desc:"Already reserved and included; this is the group dinner.",get:"Eat the included meal."}},
+ sun:{breakfast:{name:"Wimmer",desc:"Easy walk-in bakery near the Airbnb.",get:"Coffee + pretzel/pastry + savory roll.",q:"Privat Bäckerei Wimmer Lindwurmstraße Munich"},lunch:{name:"Airbräu",desc:"Airport brewery and easiest final group meal if timing works.",get:"One Bavarian dish before the flight.",q:"Airbräu Munich Airport"},dinner:{name:"Travel day",desc:"No Munich dinner slot after departure.",get:"Handle dinner based on flight/arrival."}}
+};
+function withGroupFallback(options,id,type){
+ if(MODE!=="group") return options||[];
+ const fb=GROUP_WALKIN[id]?.[type]; if(!fb) return options||[];
+ const has=(options||[]).some(p=>p.name===fb.name);
+ return has?(options||[]): [...(options||[]),{rank:"Large-group walk-in",...fb}];
+}
 function renderMeals(meals,id){
  const types=['breakfast','lunch','dinner'].concat(meals.nightlife?['nightlife']:[]);
  let h='<div class="mealTabs">'+types.map((t,i)=>'<button class="mealTab '+(i===0?'on':'')+'" data-meal="'+id+'-'+t+'">'+t[0].toUpperCase()+t.slice(1)+'</button>').join('')+'</div>';
- h+=types.map((t,i)=>'<div class="mealPane '+(i===0?'on':'')+'" id="'+id+'-'+t+'">'+(meals[t]||[]).map(p=>'<div class="placecard"><div class="placeTop"><div><div class="rank">'+p.rank+'</div><h3>'+p.name+'</h3>'+metaBadges(p.name)+'</div>'+(p.q?mapsButtons(p.q):'')+'</div><p>'+p.desc+'</p><p class="get"><b>Recommended:</b> '+p.get+'</p></div>').join('')+'</div>').join('');
+ h+=types.map((t,i)=>'<div class="mealPane '+(i===0?'on':'')+'" id="'+id+'-'+t+'">'+withGroupFallback(meals[t],id,t).map(p=>'<div class="placecard"><div class="placeTop"><div><div class="rank">'+p.rank+'</div><h3>'+p.name+'</h3>'+metaBadges(p.name)+'</div>'+(p.q?mapsButtons(p.q):'')+'</div><p>'+p.desc+'</p><p class="get"><b>Recommended:</b> '+p.get+'</p></div>').join('')+'</div>').join('');
  return h;
 }
 function timelineHtml(items){ return '<div class="card timeline">'+items.map(s=>'<div class="stop '+(s.type||'')+'"><div class="mark"></div><div class="time">'+s.time+'</div><h3>'+s.title+'</h3><p>'+s.text+'</p>'+(s.route?'<div class="route"><b>How:</b> '+s.route+'</div>':'')+(s.badge?'<div class="badges"><span class="badge tentative">'+s.badge+'</span></div>':'')+'</div>').join('')+'</div>'; }
@@ -334,7 +357,9 @@ function renderDay(id,d){
    ? weatherHtml(d.weather,d.date,'Munich stayers · weather')+weatherHtml(d.weatherEibsee,d.date,'Eibsee drivers · weather')
    : weatherHtml(d.weather,d.date,'Weather by time of day');
  const timelineBlock = splitTimeline
-   ? '<div class="section">Split timeline</div><div class="splitChoice"><div class="splitLabel">🏙️ Staying in Munich</div>'+timelineHtml(d.timelineMunich)+'</div><div class="splitChoice"><div class="splitLabel">🚗 Driving to Eibsee</div>'+timelineHtml(d.timelineEibsee)+'</div>'
+   ? (MODE==='group'
+      ? '<div class="section">Split timeline</div><div class="splitChoice"><div class="splitLabel">🚗 Driving to Eibsee</div>'+timelineHtml(d.timelineEibsee)+'</div><div class="splitChoice"><div class="splitLabel">🏙️ Staying in Munich</div>'+timelineHtml(d.timelineMunich)+'</div>'
+      : '<div class="section">Timeline</div><div class="splitChoice"><div class="splitLabel">🏙️ Staying in Munich</div>'+timelineHtml(d.timelineMunich)+'</div>')
    : '<div class="section">Timeline</div>'+timelineHtml(d.timeline);
  return '<section id="'+id+'" class="page">'+
  '<div class="card"><div class="ey">'+d.label+'</div><h2>'+d.title+'</h2><div class="summary">'+d.summary.map((s,i)=>'<div class="sum"><div class="num">'+(i+1)+'</div><div>'+s+'</div></div>').join('')+'</div></div>'+
@@ -366,17 +391,17 @@ function renderPrep(){
 function renderPack(){
  let html='<section id="pack" class="page"><div class="card"><div class="ey">Packing</div><h2>What to bring to Munich.</h2><p class="mut">Built around the current forecast, Oktoberfest, Dachau and the optional Alpine day.</p></div>';
  if(MODE==='group'){
-   html+='<div class="section">Men</div><div class="card packsec">'+PACK.group.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
-         '<div class="section">Women</div><div class="card packsec">'+PACK.group.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
+   html+='<div class="section">Women’s Packing List</div><div class="card packsec">'+PACK.group.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
+         '<div class="section">Men’s Packing List</div><div class="card packsec">'+PACK.group.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
  }else{
-   html+='<div class="section">Men</div><div class="card packsec">'+PACK.pair.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
-         '<div class="section">Women</div><div class="card packsec">'+PACK.pair.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
+   html+='<div class="section">Men’s Packing List</div><div class="card packsec">'+PACK.pair.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
+         '<div class="section">Women’s Packing List</div><div class="card packsec">'+PACK.pair.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
  }
  return html+'</section>';
 }
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+'</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.7</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div><div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
