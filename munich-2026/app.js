@@ -153,8 +153,8 @@ const TRIP = {
         {period:"Night",time:"21:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:57}
       ],
       kit:{
-        morning:{icon:"🥨",title:"Breakfast + rental pickup",text:"Wear normal casual clothes to breakfast and Bavarian Outfitters; change into Tracht back at the Airbnb."},
-        midday:{icon:"🍺",title:"Inside the tent",text:"Lederhosen/Dirndl with the normal shirt/blouse and comfortable shoes. Do not add a heavy sweater inside—the tent gets warm."},
+        morning:{icon:"👔",title:"Breakfast + rental pickup",text:"Wear normal casual clothes to breakfast and Bavarian Outfitters; change into Tracht back at the Airbnb."},
+        midday:{icon:"👕",title:"Inside the tent",text:"Lederhosen/Dirndl with the normal shirt/blouse and comfortable shoes. Do not add a heavy sweater inside—the tent gets warm."},
         night:{icon:"🌙",title:"After the tent",text:"Keep a light jacket or sweater at the Airbnb if you expect to come back before going out; otherwise bring a packable layer if it fits your tiny bag."},
         bring:"Very small permitted crossbody/fanny pack, phone, ID, €50–80 cash, card, portable charger and lip balm. Hydrate before you leave."
       },
@@ -247,7 +247,7 @@ const TRIP = {
       title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : "Kyle + Emma depart; group gets one last Munich day.",
       summary: MODE==='pair'
  ? ["Breakfast near the Airbnb","Return rental Tracht at 09:00","Leave for MUC around 10:15","FI533 to Reykjavík at 14:05","FI615 → JFK · arrive 19:20"]
- : ["Kyle + Emma leave for MUC","Remaining group: final Oktoberfest afternoon","Last souvenir / ride / tent lap","Early-ish night","Group flies Monday morning"],
+ : ["Two travelers depart for MUC","Final Oktoberfest afternoon","Last souvenir / ride / tent lap","Final Munich dinner","Early-ish night before Monday flight"],
       weather:[
         {period:"Morning",time:"08:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:49},
         {period:"Midday",time:"12:00",place:"MUC",lat:48.3537,lon:11.7750,fallback:63},
@@ -271,7 +271,7 @@ const TRIP = {
       ],
       timelineGroup:[
         {time:"~08:30",title:"Breakfast",text:"Slow morning after Saturday's tent."},
-        {time:"~10:15",title:"Kyle + Emma leave for MUC",type:"transit",text:"Their trip ends here; the rest of the group keeps the Airbnb through Monday departure."},
+        {time:"~10:15",title:"Two travelers depart for MUC",type:"transit",text:"The rest of the group keeps the Airbnb through Monday departure."},
         {time:"11:00–12:30",title:"Easy brunch / reset",text:"Keep the morning relaxed and hydrate."},
         {time:"~12:30",title:"Head to Oktoberfest closing day",type:"transit",text:"Walk from the Airbnb to Theresienwiese.",route:"This is the final day of Oktoberfest 2026, so use it for anything the group missed rather than adding another major city excursion."},
         {time:"13:00–17:30",title:"Final Wiesn afternoon",type:"optional",text:"Rides, souvenirs, one last tent/beer-hall lap, Oide Wiesn, food stands and group photos."},
@@ -423,7 +423,7 @@ function renderDay(id,d){
    : weatherHtml(d.weather,d.date,'Weather by time of day');
  const timelineBlock = splitSunday
    ? (MODE==='group'
-      ? '<div class="section">Sunday split</div><div class="splitChoice"><div class="splitLabel">✈️ Kyle + Emma</div>'+timelineHtml(d.timelinePair)+'</div><div class="splitChoice"><div class="splitLabel">🍺 Group staying through Monday</div>'+timelineHtml(d.timelineGroup)+'</div>'
+      ? '<div class="section">Timeline</div>'+timelineHtml(d.timelineGroup)
       : '<div class="section">Timeline</div>'+timelineHtml(d.timelinePair))
    : splitTimeline
    ? (MODE==='group'
@@ -474,11 +474,11 @@ function flightRows(rows){
 function renderFlightsOverview(){
  const outbound='<div class="section">Flights</div><div class="card flightcard"><div class="ey">Main group outbound</div>'+flightRows(FLIGHTS.outbound)+'</div>';
  if(MODE==='pair') return outbound+'<div class="card flightcard"><div class="ey">Kyle + Emma return</div>'+flightRows(FLIGHTS.pairReturn)+'</div>';
- return outbound+'<div class="card flightcard"><div class="ey">Return split</div><div class="subflight">Kyle + Emma · Sunday Oct 4</div>'+flightRows(FLIGHTS.pairReturn)+'<div class="subflight">Main group · Monday Oct 5</div>'+flightRows(FLIGHTS.groupReturn)+'</div>';
+ return outbound+'<div class="card flightcard"><div class="ey">Return split</div><div class="subflight">Two travelers · Sunday Oct 4</div>'+flightRows(FLIGHTS.pairReturn)+'<div class="subflight">Main group · Monday Oct 5</div>'+flightRows(FLIGHTS.groupReturn)+'</div>';
 }
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.8</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.9</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
