@@ -242,7 +242,7 @@ const TRIP = {
       }
     },
     sun:{
-      label:"Sunday · Departure",
+      label:"Sunday · Final Full Day in Munich",
       date:"2026-10-04",
       title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : " depart; group gets one last Munich day.",
       summary: MODE==='pair'
