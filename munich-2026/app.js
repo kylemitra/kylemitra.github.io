@@ -347,7 +347,7 @@ function renderDay(id,d){
 function renderPrep(){
  let html='<section id="prep" class="page"><div class="card"><div class="ey">Before departure</div><h2>Prep once. Travel easy.</h2></div><div class="section">Bookings & setup</div><div class="card">';
  const tasks=[
- "Reserve / confirm Tracht rental. Current plan assumes Bavarian Outfitters, Lindwurmstraße 108A.",
+ "Reserve / confirm Tracht rental at Bavarian Outfitters, Lindwurmstraße 108A.",
  "Reserve Pfistermühle Wednesday if choosing it.",
  "Reserve Ory Wednesday if you want guaranteed cocktail seating.",
  "Save Hofbräu + Ochsenbraterei vouchers offline.",
@@ -359,11 +359,18 @@ function renderPrep(){
  ];
  html+=tasks.map(t=>'<label class="check"><input type="checkbox"><span>'+t+'</span></label>').join('')+'</div>';
  if(MODE==='group'){
-   html+='<div class="section">General packing list <small>men</small></div><div class="card packsec">'+PACK.group.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
-   '<div class="section">General packing list <small>women</small></div><div class="card packsec">'+PACK.group.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
+   html+='<div class="section">Group eSIM <small>recommended</small></div><div class="card"><div class="ey">Ubigi · group recommendation</div><h2 style="margin-top:4px">10 GB for the trip · '+UBIGI.discounted+' after referral</h2><p class="mut">'+UBIGI.recommendation+' is currently '+UBIGI.price+' before the referral discount. Use <b>44M62Z7D</b> for 20% off your first purchase, bringing it to about <b>'+UBIGI.discounted+'</b>.</p><div class="summary" style="margin-top:12px">'+UBIGI.steps.map((x,i)=>'<div class="sum"><div class="num">'+(i+1)+'</div><div>'+x+'</div></div>').join('')+'</div><div class="packbar" style="margin-top:12px"><b>Why this one:</b> '+UBIGI.note+' Install it before the flight so nobody is troubleshooting setup at MUC.</div></div>';
+ }
+ return html+'</section>';
+}
+function renderPack(){
+ let html='<section id="pack" class="page"><div class="card"><div class="ey">Packing</div><h2>What to bring to Munich.</h2><p class="mut">Built around the current forecast, Oktoberfest, Dachau and the optional Alpine day.</p></div>';
+ if(MODE==='group'){
+   html+='<div class="section">Men</div><div class="card packsec">'+PACK.group.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
+         '<div class="section">Women</div><div class="card packsec">'+PACK.group.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
  }else{
-   html+='<div class="section">Men’s packing</div><div class="card packsec">'+PACK.pair.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
-   '<div class="section">Women’s packing</div><div class="card packsec">'+PACK.pair.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
+   html+='<div class="section">Men</div><div class="card packsec">'+PACK.pair.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
+         '<div class="section">Women</div><div class="card packsec">'+PACK.pair.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
  }
  return html+'</section>';
 }
@@ -372,16 +379,16 @@ function renderOverview(){
  return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+'</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div><div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
- '<div class="section">Souvenir ideas <small>Munich-specific</small></div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div>'+
+ '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div>'+
  '<div class="section">Eisbach surfers?</div><div class="card"><div class="ey">Spectator stop only</div><h2>Cool to watch, not to surf.</h2><p class="mut">The Eisbach wave is for experienced surfers and is not a beginner activity. If the Old Town / English Garden route naturally takes you nearby, spend 10–20 minutes watching. Do not build the trip around trying it yourselves.</p></div></section>';
 }
 document.addEventListener('DOMContentLoaded',()=>{
- document.getElementById('pages').innerHTML=renderOverview()+renderPrep()+Object.entries(TRIP.days).map(([k,d])=>renderDay(k,d)).join('');
+ document.getElementById('pages').innerHTML=renderOverview()+renderPrep()+renderPack()+Object.entries(TRIP.days).map(([k,d])=>renderDay(k,d)).join('');
  const tabs=[...document.querySelectorAll('.tab')],pages=[...document.querySelectorAll('.page')],bottom=[...document.querySelectorAll('.bottom button')];
  function go(id){tabs.forEach(x=>x.classList.toggle('on',x.dataset.p===id));pages.forEach(x=>x.classList.toggle('on',x.id===id));bottom.forEach(x=>x.classList.toggle('on',x.dataset.go===id));localStorage.setItem('munich-page-'+MODE,id);scrollTo(0,0)}
  tabs.forEach(x=>x.onclick=()=>go(x.dataset.p));bottom.forEach(x=>x.onclick=()=>go(x.dataset.go));
  document.querySelectorAll('.mealTab').forEach(b=>b.onclick=()=>{const target=b.dataset.meal;const parent=b.closest('.card');parent.querySelectorAll('.mealTab').forEach(x=>x.classList.remove('on'));parent.querySelectorAll('.mealPane').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(target).classList.add('on')});
- document.querySelectorAll('input[type=checkbox]').forEach((x,i)=>{const k='munich-'+MODE+'-check-'+i;x.checked=localStorage.getItem(k)==='1';x.onchange=()=>localStorage.setItem(k,x.checked?'1':'0')});
+ document.querySelectorAll('.page').forEach(page=>page.querySelectorAll('input[type=checkbox]').forEach((x,i)=>{const k='munich-'+MODE+'-'+page.id+'-check-'+i;x.checked=localStorage.getItem(k)==='1';x.onchange=()=>localStorage.setItem(k,x.checked?'1':'0')}));
  const tripMap={'2026-09-30':'wed','2026-10-01':'thu','2026-10-02':'fri','2026-10-03':'sat','2026-10-04':'sun'};
  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
  const todayPage=tripMap[today],todayBtn=document.getElementById('todayBtn');if(todayPage)todayBtn.dataset.go=todayPage;
