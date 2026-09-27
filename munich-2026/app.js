@@ -243,6 +243,15 @@ const TRIP = {
   }
 };
 
+const UBIGI = {
+  code:"44M62Z7D",
+  recommendation:"10 GB · 7 days",
+  price:"€10",
+  discounted:"€8",
+  note:"Best fit for this 5-day trip: plenty for Maps, WhatsApp, transit, restaurant searches and normal social use.",
+  steps:["Download the Ubigi app","Install the eSIM before departure","Buy the Germany 10 GB / 7-day plan","Enter referral code 44M62Z7D on the first purchase","Activate/use the eSIM when you land in Germany"]
+};
+
 const PACK = {
  pair:{
    men:["2 short-sleeve shirts","2 long-sleeve shirts","1 sweater or quarter-zip","1 light waterproof jacket","1 warmer fleece/sweater for the Alpine day","2 casual pants + 1 nicer dinner pair","Comfortable walking shoes + optional nicer dinner shoe","Lederhosen/Tracht set + long socks + sturdy shoes","Underwear/socks + 1 spare day","Sunglasses, toiletries, prescriptions, electrolytes, blister care"],
