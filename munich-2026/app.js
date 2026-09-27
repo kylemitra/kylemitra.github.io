@@ -319,7 +319,7 @@ const TRIP = {
       ],
       meals:{
         breakfast:[
-          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most Munich-specific final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
+          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most local final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
           {rank:"Fastest",name:"Airport bakery",desc:"Use whichever bakery is closest to your gate/terminal.",get:"Pretzel/sandwich + coffee."},
           {rank:"Bring from Airbnb",name:"Grab-and-go snacks",desc:"Best if nobody wants to risk food timing before the flight.",get:"Water + something simple for the ride to MUC."}
         ],
@@ -389,7 +389,7 @@ function metaBadges(name){
 }
 function mapsButtons(q){
  const enc=encodeURIComponent(q);
- return '<div class="maps"><a class="mapbtn" href="https://maps.apple.com/?q='+enc+'">Apple</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query='+enc+'">Google</a></div>';
+ return '<div class="maps"><a class="mapbtn" aria-label="Open in Apple Maps" href="https://maps.apple.com/?q='+enc+'">Apple</a><a class="mapbtn" aria-label="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query='+enc+'">Google</a></div>';
 }
 const GROUP_WALKIN = {
  wed:{breakfast:{name:"Viktualienmarkt stalls",desc:"Easy no-reservation fallback that can absorb a big group by splitting across stalls.",get:"Grab-and-go breakfast/market snacks.",q:"Viktualienmarkt Munich"},lunch:{name:"Hofbräuhaus",desc:"Huge historic beer hall with ground-floor walk-in seating; useful if the full group wants one place.",get:"Roast pork, schnitzel, sausage or pretzel + beer.",q:"Hofbräuhaus München"},dinner:{name:"Hofbräuhaus",desc:"Large-capacity walk-in fallback if reservations fall apart.",get:"Classic Bavarian beer-hall dinner.",q:"Hofbräuhaus München"}},
@@ -478,7 +478,7 @@ function renderFlightsOverview(){
 }
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.11</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.12</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
