@@ -379,8 +379,7 @@ function renderOverview(){
  return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+'</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div><div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
- '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div>'+
- '<div class="section">Eisbach surfers?</div><div class="card"><div class="ey">Spectator stop only</div><h2>Cool to watch, not to surf.</h2><p class="mut">The Eisbach wave is for experienced surfers and is not a beginner activity. If the Old Town / English Garden route naturally takes you nearby, spend 10–20 minutes watching. Do not build the trip around trying it yourselves.</p></div></section>';
+ '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
 }
 document.addEventListener('DOMContentLoaded',()=>{
  document.getElementById('pages').innerHTML=renderOverview()+renderPrep()+renderPack()+Object.entries(TRIP.days).map(([k,d])=>renderDay(k,d)).join('');
