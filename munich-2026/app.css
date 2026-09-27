@@ -45,3 +45,19 @@
 .flightmain span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 .flightmain small{display:block;font-size:10px;color:var(--amber);font-weight:800;margin-top:3px}
 .subflight{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
+
+.suggestBtn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.16);color:#fff;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:900;backdrop-filter:blur(8px)}
+.suggestBtn:active{transform:scale(.97)}
+.modalWrap{position:fixed;inset:0;background:rgba(20,16,12,.58);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;z-index:200;padding:14px}
+.modalWrap.open{display:flex}
+.modalCard{width:min(720px,100%);background:var(--paper);border-radius:24px 24px 18px 18px;padding:16px;box-shadow:0 24px 70px #0005}
+.modalTop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.modalTop h2{margin:0;font-size:21px}
+.modalClose{border:0;background:#eee3d2;width:34px;height:34px;border-radius:50%;font-size:17px;font-weight:900}
+.field{display:block;margin:11px 0}
+.field span{display:block;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 5px}
+.field select,.field textarea{width:100%;border:1px solid #dfd0b8;background:#fff;border-radius:14px;padding:11px;font:inherit;color:var(--ink);outline:none}
+.field textarea{min-height:110px;resize:vertical}
+.submitSuggest{width:100%;border:0;background:var(--red);color:#fff;border-radius:14px;padding:12px;font-weight:950;margin-top:4px}
+.suggestNote{font-size:10px;color:var(--muted);line-height:1.4;margin:9px 2px 0}
+body.modalOpen{overflow:hidden}
