@@ -478,7 +478,7 @@ function renderFlightsOverview(){
 }
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.10</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.11</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
@@ -510,3 +510,23 @@ async function refreshWeather(){
   }catch(e){}
  }
 }
+
+function initSuggestionForm(){
+ if(MODE!=="group") return;
+ const open=document.getElementById("suggestBtn"), modal=document.getElementById("suggestModal"), close=document.getElementById("suggestClose"), form=document.getElementById("suggestForm");
+ if(!open||!modal||!close||!form) return;
+ const setOpen=(v)=>{modal.classList.toggle("open",v);document.body.classList.toggle("modalOpen",v)};
+ open.onclick=()=>setOpen(true); close.onclick=()=>setOpen(false);
+ modal.addEventListener("click",e=>{if(e.target===modal)setOpen(false)});
+ form.addEventListener("submit",e=>{
+   e.preventDefault();
+   const date=document.getElementById("suggestDate").value.trim();
+   const change=document.getElementById("suggestChange").value.trim();
+   if(!date||!change) return;
+   const title="[Trip suggestion] "+date;
+   const body="**Date:** "+date+"\n\n**Suggested change:**\n"+change+"\n\n_Submitted from the Munich 2026 group app._";
+   const url="https://github.com/kylemitra/kylemitra.github.io/issues/new?title="+encodeURIComponent(title)+"&body="+encodeURIComponent(body);
+   window.open(url,"_blank","noopener");
+ });
+}
+document.addEventListener("DOMContentLoaded",initSuggestionForm);
