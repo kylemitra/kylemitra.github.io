@@ -36,3 +36,12 @@
 .homeMaps{display:flex;gap:6px;margin-top:8px}
 .homeMapBtn{display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #decbae;color:#4a3620;border-radius:10px;padding:6px 8px;font-size:9px;font-weight:900}
 @media(max-width:430px){.mealTabs:has(.mealTab:nth-child(4)){grid-template-columns:repeat(2,1fr)}}
+
+.flightcard{padding-top:13px}
+.flightrow{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.flightrow:last-child{border-bottom:0}
+.flightcode{background:#211a15;color:#fff7e7;border-radius:10px;padding:7px 8px;font-size:10px;font-weight:950;letter-spacing:.04em}
+.flightmain b{display:block;font-size:13px}
+.flightmain span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.flightmain small{display:block;font-size:10px;color:var(--amber);font-weight:800;margin-top:3px}
+.subflight{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
