@@ -1,0 +1,18 @@
+{
+  "name": "Munich + Oktoberfest 2026",
+  "short_name": "Munich 2026",
+  "id": "/munich-2026/",
+  "start_url": "/munich-2026/",
+  "scope": "/munich-2026/",
+  "display": "standalone",
+  "background_color": "#f3f4f5",
+  "theme_color": "#123a61",
+  "icons": [
+    {
+      "src": "/munich-2026/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
