@@ -52,11 +52,11 @@ const TRIP = {
       },
       timeline:[
         {time:"08:15",title:"Land at MUC",type:"fixed",text:"Immigration + baggage.",route:"After bags, follow green S-Bahn signs in the airport."},
-        {time:"~09:30",title:"Airport → München Hbf",type:"transit",text:"Take whichever comes first: S1 or S8.",route:"Allow about 40–45 min on the train. For the 10-person group, public transit is easier than coordinating multiple cars.",q:"München Hauptbahnhof"},
+        {time:"~09:30",title:"Airport → München Hbf",type:"transit",text:"Take whichever comes first: S1 or S8.",route:"Allow about 40–45 min on the train. For the 10-person group, public transit is easier than coordinating multiple cars."},
         {time:"~10:20",title:"Hbf lockers",type:"transit",text:"Store luggage, get €1/€2 coins, then start the day hands-free.",route:"You are now about a 15–20 min walk from Marienplatz."},
-        {time:"10:45–14:10",title:"Essential Old Town loop",text:"Karlsplatz → Frauenkirche → Marienplatz/Glockenspiel → Viktualienmarkt → Asamkirche → Hofbräuhaus → Odeonsplatz → Residenz/Hofgarten.",route:"Mostly walking. Eat lunch while moving through the center.",q:"Marienplatz Munich"},
+        {time:"10:45–14:10",title:"Essential Old Town loop",text:"Karlsplatz → Frauenkirche → Marienplatz/Glockenspiel → Viktualienmarkt → Asamkirche → Hofbräuhaus → Odeonsplatz → Residenz/Hofgarten.",route:"Mostly walking. Eat lunch while moving through the center."},
         {time:"~14:15",title:"Hbf → Airbnb",type:"transit",text:"Collect bags and head south to Lindwurmstraße 189.",route:"Simple luggage route: X6 from Hauptbahnhof Süd toward Poccistraße is about 11 min, then a short walk. With lots of bags, Uber/taxi is a reasonable convenience option."},
-        {time:"15:00",title:"Check in",type:"fixed",text:"Drop bags and get settled.",q:"Lindwurmstraße 189 Munich"},
+        {time:"15:00",title:"Check in",type:"fixed",text:"Drop bags and get settled."},
         {time:"15:30–18:00",title:"Shower + nap + reset",text:"Protect the energy for the rest of the trip."},
         {time:"~19:00",title:"Dinner",text: MODE==='pair' ? "Best slot for a small-group / date-night meal." : "Best open night for a proper group or small-group Munich dinner."},
         {time:"~21:30+",title:"Cocktails",type:"optional",text: MODE==='pair' ? "Zephyr for 2–4; Ory as the polished reservable fallback." : "Split into smaller groups if doing cocktails; Zephyr is tiny, Ory handles a somewhat larger group better."}
@@ -105,20 +105,20 @@ const TRIP = {
       },
       timelineMunich:[
         {time:"~08:15",title:"Breakfast in Munich",text:"Use one of the breakfast choices below before starting sightseeing."},
-        {time:"~09:00",title:"Airbnb → Nymphenburg Palace",type:"transit",text:"Head west for a Munich landmark not covered on Wednesday.",route:"Easy route: walk to Poccistraße → X6 to Hauptbahnhof Süd → tram 16/17 toward Schloss Nymphenburg. Allow roughly 40–45 min door-to-palace.",q:"Nymphenburg Palace Munich"},
+        {time:"~09:00",title:"Airbnb → Nymphenburg Palace",type:"transit",text:"Head west for a Munich landmark not covered on Wednesday.",route:"Easy route: walk to Poccistraße → X6 to Hauptbahnhof Süd → tram 16/17 toward Schloss Nymphenburg. Allow roughly 40–45 min door-to-palace."},
         {time:"09:45–11:45",title:"Nymphenburg Palace + grounds",text:"Tour the palace interior and spend some time in the park.",route:"Palace and museums are open 09:00–18:00 on Oct 1. Optional: Marstallmuseum if you want more royal-history content."},
         {time:"~11:45–12:30",title:"Nymphenburg → lunch",type:"transit",text:"Move toward Maxvorstadt/Olympiapark and pick a lunch option below."},
-        {time:"13:00–15:15",title:"BMW Welt + BMW Museum + Olympiapark",text:"BMW Welt is free; add the museum if you want the deeper history/collection. Walk a short loop through Olympiapark while you're there.",route:"BMW Welt is open all day; BMW Museum is open 10:00–18:00.",q:"BMW Welt Munich"},
+        {time:"13:00–15:15",title:"BMW Welt + BMW Museum + Olympiapark",text:"BMW Welt is free; add the museum if you want the deeper history/collection. Walk a short loop through Olympiapark while you're there.",route:"BMW Welt is open all day; BMW Museum is open 10:00–18:00."},
         {time:"15:15–16:00",title:"Olympiapark → Old Town",type:"transit",text:"Use U3/U-Bahn back toward central Munich."},
-        {time:"16:00–17:15",title:"Souvenir dash + art hunt",text:"Use the Old Town for the original watercolor plus official Wiesn/unique Munich souvenirs.",route:"Best zone: Viktualienmarkt → Dallmayr → Marienplatz / nearby official souvenir options.",q:"Viktualienmarkt Munich"},
+        {time:"16:00–17:15",title:"Souvenir dash + art hunt",text:"Use the Old Town for the original watercolor plus official Wiesn/unique Munich souvenirs.",route:"Best zone: Viktualienmarkt → Dallmayr → Marienplatz / nearby official souvenir options."},
         {time:"17:20–18:20",title:"Dinner",text:"Pick one of the central quick-but-good options below."},
-        {time:"~18:30",title:"City center → Allianz Arena",type:"transit",text:"Move early for match-day crowds.",route:"U6 toward Fröttmaning. Marienplatz → Fröttmaning is about 16 min, then allow another 15–20 min walking to the stadium.",q:"Allianz Arena Munich"},
+        {time:"~18:30",title:"City center → Allianz Arena",type:"transit",text:"Move early for match-day crowds.",route:"U6 toward Fröttmaning. Marienplatz → Fröttmaning is about 16 min, then allow another 15–20 min walking to the stadium."},
         {time:"20:45",title:"Germany vs Serbia",type:"fixed",text:"Allianz Arena."}
       ],
       timelineEibsee:[
         {time:"~07:15",title:"Breakfast + meet cars",text:"Eat before departure and be ready to drive."},
-        {time:"~07:45",title:"Drive Munich → Eibsee",type:"transit",text:"This branch is by car, not train.",route:"Allow about 1.5 hours each way depending on traffic; official Eibsee guidance estimates Munich → Eibsee at about 1.5 hours by car.",q:"Eibsee Grainau"},
-        {time:"~09:15–14:15",title:"Eibsee + optional Zugspitze",text:"Enjoy the lake; add Zugspitze only if visibility is worthwhile.",route:"Eibsee Pavillon and Eibsee Alm are both on-site lunch options.",q:"Eibsee Grainau"},
+        {time:"~07:45",title:"Drive Munich → Eibsee",type:"transit",text:"This branch is by car, not train.",route:"Allow about 1.5 hours each way depending on traffic; official Eibsee guidance estimates Munich → Eibsee at about 1.5 hours by car."},
+        {time:"~09:15–14:15",title:"Eibsee + optional Zugspitze",text:"Enjoy the lake; add Zugspitze only if visibility is worthwhile.",route:"Eibsee Pavillon and Eibsee Alm are both on-site lunch options."},
         {time:"~14:15–16:00",title:"Drive back to Munich",type:"transit",text:"Leave enough buffer for traffic and the match."},
         {time:"~16:00–17:30",title:"Reset + quick dinner",text:"Regroup at the Airbnb / central Munich and eat before the stadium."},
         {time:"~18:30",title:"Munich → Allianz Arena",type:"transit",text:"Use U6 toward Fröttmaning.",route:"Allow stadium walking and security buffer."},
@@ -160,11 +160,11 @@ const TRIP = {
       },
       timeline:[
         {time:"08:15–08:50",title:"Breakfast + hydration",text:"Use one of the neighborhood choices below."},
-        {time:"~09:00",title:"Bavarian Outfitters pickup",type:"fixed",text:"Pick up the reserved Lederhosen/Dirndl at Bavarian Outfitters, Lindwurmstraße 108A.",route:"Walk from the Airbnb; the shop opens at 07:30 on Oktoberfest Fridays. Your reservation is already made.",q:"Bavarian Outfitters Lindwurmstraße 108A Munich"},
+        {time:"~09:00",title:"Bavarian Outfitters pickup",type:"fixed",text:"Pick up the reserved Lederhosen/Dirndl at Bavarian Outfitters, Lindwurmstraße 108A.",route:"Walk from the Airbnb; the shop opens at 07:30 on Oktoberfest Fridays. Your reservation is already made."},
         {time:"09:30–10:15",title:"Back to Airbnb + change into Tracht",text:"Fit check, get dressed, sunscreen, hydration, tiny festival bag only."},
-        {time:"~10:25",title:"Airbnb → Theresienwiese",type:"transit",text:"Walk if the weather is fine.",route:"Allow roughly 15–20 min on foot from your Lindwurmstraße base; use live Maps for the nearest festival entrance.",q:"Theresienwiese Munich"},
-        {time:"10:45–11:50",title:"Explore the Wiesn",text:"Photos, Bavaria statue, rides, souvenirs and festival orientation before the table.",q:"Theresienwiese Munich"},
-        {time:"12:00–17:30",title:"Hofbräu-Festzelt",type:"fixed",text:"Your package includes beer, a meal and dessert.",route:"Treat this as your main lunch and likely your main dinner-calorie block.",q:"Hofbräu-Festzelt Munich"},
+        {time:"~10:25",title:"Airbnb → Theresienwiese",type:"transit",text:"Walk if the weather is fine.",route:"Allow roughly 15–20 min on foot from your Lindwurmstraße base; use live Maps for the nearest festival entrance."},
+        {time:"10:45–11:50",title:"Explore the Wiesn",text:"Photos, Bavaria statue, rides, souvenirs and festival orientation before the table."},
+        {time:"12:00–17:30",title:"Hofbräu-Festzelt",type:"fixed",text:"Your package includes beer, a meal and dessert.",route:"Treat this as your main lunch and likely your main dinner-calorie block."},
         {time:"17:30+",title:"Free-form Oktoberfest night",type:"optional",text:"Rides, Oide Wiesn, another tent if possible, then bars/Pacha only if the group wants more."}
       ],
       meals:{
@@ -209,13 +209,13 @@ const TRIP = {
       timeline:[
         {time:"~07:15",title:"Quick breakfast",text:"Eat before leaving or grab something at Hbf."},
         {time:"~07:40",title:"Airbnb → Hbf",type:"transit",text:"Start moving with enough buffer.",route:"Walk to Poccistraße → X6 to Hauptbahnhof Süd (~11 min on bus). Allow ~25 min door-to-platform."},
-        {time:"~08:05",title:"Hbf → Dachau Bahnhof",type:"transit",text:"Take S2 toward Dachau/Petershausen.",route:"Official memorial guidance puts Hbf → Dachau at about 25 min.",q:"Dachau Bahnhof"},
+        {time:"~08:05",title:"Hbf → Dachau Bahnhof",type:"transit",text:"Take S2 toward Dachau/Petershausen.",route:"Official memorial guidance puts Hbf → Dachau at about 25 min."},
         {time:"~08:30–08:50",title:"Dachau Bahnhof → Memorial",type:"transit",text:"Transfer to bus 726 toward Saubachsiedlung.",route:"Bus ride is about 10 min; get off at KZ-Gedenkstätte."},
-        {time:"09:00–~12:00",title:"Dachau Memorial Site",type:"fixed",text:"Priority visit. Give it the full morning and don't rush.",q:"Dachau Concentration Camp Memorial Site"},
+        {time:"09:00–~12:00",title:"Dachau Memorial Site",type:"fixed",text:"Priority visit. Give it the full morning and don't rush."},
         {time:"~12:10–13:00",title:"Return to central Munich",type:"transit",text:"Bus 726 → S2 back toward Hbf."},
         {time:"~13:00–14:00",title:"Lunch + optional Ballabeni",text:"Choose one of the lunch options below; Ballabeni is dessert, not lunch.",route:"If the memorial runs long, skip Ballabeni before you compress the tent setup."},
         {time:"~14:15–15:35",title:"Airbnb reset + change",text:"Shower/refresh, hydrate and change into Tracht."},
-        {time:"~15:40",title:"Airbnb → Wiesn",type:"transit",text:"Walk to Theresienwiese.",route:"Allow about 15–20 min plus entrance/crowd buffer.",q:"Theresienwiese Munich"},
+        {time:"~15:40",title:"Airbnb → Wiesn",type:"transit",text:"Walk to Theresienwiese.",route:"Allow about 15–20 min plus entrance/crowd buffer."},
         {time:"16:30–close",title:"Ochsenbraterei",type:"fixed",text:"Your main dinner and Oktoberfest finale."}
       ],
       meals:{
@@ -244,7 +244,7 @@ const TRIP = {
     sun:{
       label:"Sunday · Departure",
       date:"2026-10-04",
-      title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : "Kyle + Emma depart; group gets one last Munich day.",
+      title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : "Two travelers depart; group gets one last Munich day.",
       summary: MODE==='pair'
  ? ["Breakfast near the Airbnb","Return rental Tracht at 09:00","Leave for MUC around 10:15","FI533 to Reykjavík at 14:05","FI615 → JFK · arrive 19:20"]
  : ["Relaxed final Munich morning","Final Oktoberfest afternoon","Last souvenir / ride / tent lap","Final Munich dinner","Early-ish night before Monday flight"],
@@ -261,7 +261,7 @@ const TRIP = {
       },
       timelinePair:[
         {time:"~08:00",title:"Breakfast",text:"Pick one of the convenient options below."},
-        {time:"09:00–09:25",title:"Return Tracht",type:"fixed",text:"Return the reserved outfits to Bavarian Outfitters, Lindwurmstraße 108A.",route:"The shop opens at 09:00 Sunday; returning immediately keeps the airport morning clean.",q:"Bavarian Outfitters Lindwurmstraße 108A Munich"},
+        {time:"09:00–09:25",title:"Return Tracht",type:"fixed",text:"Return the reserved outfits to Bavarian Outfitters, Lindwurmstraße 108A.",route:"The shop opens at 09:00 Sunday; returning immediately keeps the airport morning clean."},
         {time:"09:25–10:00",title:"Final pack + sweep",text:"Check chargers, bathroom, drawers and fridge."},
         {time:"~10:15",title:"Airbnb → MUC",type:"transit",text:"Leave for the airport with a comfortable buffer.",route:"Use the easiest luggage route available that morning; S-Bahn via Hbf or taxi/Uber."},
         {time:"~11:30",title:"Arrive MUC",text:"Check bags, security and eat lunch if needed."},
@@ -272,8 +272,8 @@ const TRIP = {
       timelineGroup:[
         {time:"~08:30",title:"Breakfast",text:"Slow morning after Saturday's tent."},
         {time:"10:30–12:30",title:"Easy brunch / reset",text:"Keep the morning relaxed and hydrate before the final Oktoberfest afternoon."},
-        {time:"~12:30",title:"Head to Oktoberfest closing day",type:"transit",text:"Walk from the Airbnb to Theresienwiese.",route:"This is the final day of Oktoberfest 2026, so use it for anything the group missed rather than adding another major city excursion.",q:"Theresienwiese Munich"},
-        {time:"13:00–17:30",title:"Final Wiesn afternoon",type:"optional",text:"Rides, souvenirs, one last tent/beer-hall lap, Oide Wiesn, food stands and group photos.",q:"Theresienwiese Munich"},
+        {time:"~12:30",title:"Head to Oktoberfest closing day",type:"transit",text:"Walk from the Airbnb to Theresienwiese.",route:"This is the final day of Oktoberfest 2026, so use it for anything the group missed rather than adding another major city excursion."},
+        {time:"13:00–17:30",title:"Final Wiesn afternoon",type:"optional",text:"Rides, souvenirs, one last tent/beer-hall lap, Oide Wiesn, food stands and group photos."},
         {time:"17:30–19:00",title:"Final Munich dinner",text:"Choose something easy and group-friendly from the dinner options."},
         {time:"19:00–21:00",title:"Pack + low-key final night",text:"No huge club night—the group has an early airport departure Monday."}
       ],
@@ -319,7 +319,7 @@ const TRIP = {
       ],
       meals:{
         breakfast:[
-          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most local final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
+          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most Munich-specific final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
           {rank:"Fastest",name:"Airport bakery",desc:"Use whichever bakery is closest to your gate/terminal.",get:"Pretzel/sandwich + coffee."},
           {rank:"Bring from Airbnb",name:"Grab-and-go snacks",desc:"Best if nobody wants to risk food timing before the flight.",get:"Water + something simple for the ride to MUC."}
         ],
@@ -389,7 +389,7 @@ function metaBadges(name){
 }
 function mapsButtons(q){
  const enc=encodeURIComponent(q);
- return '<div class="maps"><a class="mapbtn" aria-label="Open in Apple Maps" href="https://maps.apple.com/?q='+enc+'">Apple</a><a class="mapbtn" aria-label="Open in Google Maps" href="https://www.google.com/maps/search/?api=1&query='+enc+'">Google</a></div>';
+ return '<div class="maps"><a class="mapbtn" href="https://maps.apple.com/?q='+enc+'">Apple</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query='+enc+'">Google</a></div>';
 }
 const GROUP_WALKIN = {
  wed:{breakfast:{name:"Viktualienmarkt stalls",desc:"Easy no-reservation fallback that can absorb a big group by splitting across stalls.",get:"Grab-and-go breakfast/market snacks.",q:"Viktualienmarkt Munich"},lunch:{name:"Hofbräuhaus",desc:"Huge historic beer hall with ground-floor walk-in seating; useful if the full group wants one place.",get:"Roast pork, schnitzel, sausage or pretzel + beer.",q:"Hofbräuhaus München"},dinner:{name:"Hofbräuhaus",desc:"Large-capacity walk-in fallback if reservations fall apart.",get:"Classic Bavarian beer-hall dinner.",q:"Hofbräuhaus München"}},
@@ -410,7 +410,7 @@ function renderMeals(meals,id){
  h+=types.map((t,i)=>'<div class="mealPane '+(i===0?'on':'')+'" id="'+id+'-'+t+'">'+withGroupFallback(meals[t],id,t).map(p=>'<div class="placecard"><div class="placeTop"><div><div class="rank">'+p.rank+'</div><h3>'+p.name+'</h3>'+metaBadges(p.name)+'</div>'+(p.q?mapsButtons(p.q):'')+'</div><p>'+p.desc+'</p><p class="get"><b>Recommended:</b> '+p.get+'</p></div>').join('')+'</div>').join('');
  return h;
 }
-function timelineHtml(items){ return '<div class="card timeline">'+items.map(s=>'<div class="stop '+(s.type||'')+'"><div class="mark"></div><div class="time">'+s.time+'</div><div class="stopTop"><h3>'+s.title+'</h3>'+(s.q?mapsButtons(s.q):'')+'</div><p>'+s.text+'</p>'+(s.route?'<div class="route"><b>How:</b> '+s.route+'</div>':'')+(s.badge?'<div class="badges"><span class="badge tentative">'+s.badge+'</span></div>':'')+'</div>').join('')+'</div>'; }
+function timelineHtml(items){ return '<div class="card timeline">'+items.map(s=>'<div class="stop '+(s.type||'')+'"><div class="mark"></div><div class="time">'+s.time+'</div><h3>'+s.title+'</h3><p>'+s.text+'</p>'+(s.route?'<div class="route"><b>How:</b> '+s.route+'</div>':'')+(s.badge?'<div class="badges"><span class="badge tentative">'+s.badge+'</span></div>':'')+'</div>').join('')+'</div>'; }
 function weatherHtml(list,date,label){
  return '<div class="card weather"><div class="ey">'+label+'</div><div class="wxgrid">'+list.map(w=>'<div class="wx" data-wx="'+w.time+'|'+w.lat+'|'+w.lon+'|'+date+'"><div class="period">'+w.period+'</div><div class="temp">'+w.fallback+'°</div><div class="cond">Forecast loading</div><div class="place">'+w.place+'</div></div>').join('')+'</div></div>';
 }
@@ -478,7 +478,7 @@ function renderFlightsOverview(){
 }
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.13</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.10</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
@@ -510,23 +510,3 @@ async function refreshWeather(){
   }catch(e){}
  }
 }
-
-function initSuggestionForm(){
- if(MODE!=="group") return;
- const open=document.getElementById("suggestBtn"), modal=document.getElementById("suggestModal"), close=document.getElementById("suggestClose"), form=document.getElementById("suggestForm");
- if(!open||!modal||!close||!form) return;
- const setOpen=(v)=>{modal.classList.toggle("open",v);document.body.classList.toggle("modalOpen",v)};
- open.onclick=()=>setOpen(true); close.onclick=()=>setOpen(false);
- modal.addEventListener("click",e=>{if(e.target===modal)setOpen(false)});
- form.addEventListener("submit",e=>{
-   e.preventDefault();
-   const date=document.getElementById("suggestDate").value.trim();
-   const change=document.getElementById("suggestChange").value.trim();
-   if(!date||!change) return;
-   const title="[Trip suggestion] "+date;
-   const body="**Date:** "+date+"\n\n**Suggested change:**\n"+change+"\n\n_Submitted from the Munich 2026 group app._";
-   const url="https://github.com/kylemitra/kylemitra.github.io/issues/new?title="+encodeURIComponent(title)+"&body="+encodeURIComponent(body);
-   window.open(url,"_blank","noopener");
- });
-}
-document.addEventListener("DOMContentLoaded",initSuggestionForm);
