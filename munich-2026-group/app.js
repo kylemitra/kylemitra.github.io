@@ -191,7 +191,7 @@ const TRIP = {
       }
     },
     sat:{
-      label:"Saturday · Dachau + Wiesn II",
+      label:"Saturday · Dachau, Festival Finale",
       date:"2026-10-03",
       title:"Memorial morning, festival finale.",
       summary:["Leave early for Dachau","Dachau at 09:00","Lunch on return to Munich","Ballabeni if timing works","Change into Tracht → Ochsenbraterei"],
