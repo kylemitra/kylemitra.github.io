@@ -23,7 +23,7 @@ const TRIP = {
       label:"Wednesday · Arrival",
       date:"2026-09-30",
       title:"Land, see Munich, settle in.",
-      summary:["Airport → Hbf lockers","Essential Old Town loop","Souvenir dash + art hunt","Tracht pickup near Airbnb","Best dinner + cocktails night"],
+      summary:["Airport → Hbf lockers","Essential Old Town loop","Airbnb check-in + reset","Dinner 🍽️ + cocktails 🍸","Flexible first night"],
       weather:[
         {period:"Morning",time:"09:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:54},
         {period:"Midday",time:"13:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:72},
@@ -40,11 +40,9 @@ const TRIP = {
         {time:"~09:30",title:"Airport → München Hbf",type:"transit",text:"Take whichever comes first: S1 or S8.",route:"Allow about 40–45 min on the train. For the 10-person group, public transit is easier than coordinating multiple cars."},
         {time:"~10:20",title:"Hbf lockers",type:"transit",text:"Store luggage, get €1/€2 coins, then start the day hands-free.",route:"You are now about a 15–20 min walk from Marienplatz."},
         {time:"10:45–14:10",title:"Essential Old Town loop",text:"Karlsplatz → Frauenkirche → Marienplatz/Glockenspiel → Viktualienmarkt → Asamkirche → Hofbräuhaus → Odeonsplatz → Residenz/Hofgarten.",route:"Mostly walking. Eat lunch while moving through the center."},
-        {time:"Along the loop",title:"Souvenir dash + art hunt",type:"optional",text:"Look for the original watercolor first, then official 2026 Wiesn pieces and small Munich/Bavarian keepsakes."},
         {time:"~14:15",title:"Hbf → Airbnb",type:"transit",text:"Collect bags and head south to Lindwurmstraße 189.",route:"Simple luggage route: X6 from Hauptbahnhof Süd toward Poccistraße is about 11 min, then a short walk. With lots of bags, Uber/taxi is a reasonable convenience option."},
         {time:"15:00",title:"Check in",type:"fixed",text:"Drop bags and get settled."},
-        {time:"15:20–16:00",title:"Tracht pickup",type:"optional",badge:"Tentative vendor",text:"Assuming Bavarian Outfitters, Lindwurmstraße 108A. It's on the same street and is much easier than gambling on Thursday's Alpine return.",route:"Walk there from the Airbnb, fit/pick up the outfits, then walk back."},
-        {time:"16:00–18:00",title:"Shower + nap + reset",text:"Protect the energy for the rest of the trip."},
+        {time:"15:30–18:00",title:"Shower + nap + reset",text:"Protect the energy for the rest of the trip."},
         {time:"~19:00",title:"Dinner",text: MODE==='pair' ? "Best slot for a small-group / date-night meal." : "Best open night for a proper group or small-group Munich dinner."},
         {time:"~21:30+",title:"Cocktails",type:"optional",text: MODE==='pair' ? "Zephyr for 2–4; Ory as the polished reservable fallback." : "Split into smaller groups if doing cocktails; Zephyr is tiny, Ory handles a somewhat larger group better."}
       ],
@@ -70,28 +68,45 @@ const TRIP = {
     thu:{
       label:"Thursday · Alps + Match",
       date:"2026-10-01",
-      title:"Mountain day, then Allianz Arena.",
-      summary:["Early train toward Eibsee","Zugspitze only if visibility is good","Three lunch choices around Eibsee/Garmisch","Back in Munich by ~17:30","Germany–Serbia at 20:45"],
+      title: MODE==='pair' ? "Munich tourist day, then Allianz Arena." : "Split day: Alps or Munich, then the match.",
+      summary: MODE==='pair'
+ ? ["Nymphenburg Palace","BMW Welt + Olympiapark","Souvenir dash + art hunt","Dinner in central Munich","Germany–Serbia at 20:45"]
+ : ["Split: Eibsee road trip OR Munich tourist day","Meet back in Munich by ~17:30","Dinner before the match","Germany–Serbia at 20:45"],
       weather:[
-        {period:"Morning",time:"09:00",place:"Eibsee",lat:47.4565,lon:10.9740,fallback:48},
-        {period:"Midday",time:"13:00",place:"Eibsee",lat:47.4565,lon:10.9740,fallback:60},
+        {period:"Morning",time:"09:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:55},
+        {period:"Midday",time:"13:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:69},
         {period:"Night",time:"21:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:61}
       ],
+      weatherEibsee:[
+        {period:"Morning",time:"09:00",place:"Eibsee",lat:47.4565,lon:10.9740,fallback:48},
+        {period:"Midday",time:"13:00",place:"Eibsee",lat:47.4565,lon:10.9740,fallback:60},
+        {period:"Evening",time:"17:00",place:"Drive back",lat:47.8,lon:11.2,fallback:58}
+      ],
       kit:{
-        morning:{icon:"🥾",title:"Train + Eibsee",text:"Long-sleeve or T-shirt under a sweater/fleece, comfortable pants, walking shoes."},
-        midday:{icon:"🏔️",title:"Lake / mountain",text:"Carry a waterproof shell. If going up Zugspitze, add your warmest layer—the summit can feel much colder than Munich."},
-        night:{icon:"⚽",title:"Match",text:"Back in Munich, shed the mountain layer. Casual layers are fine; add a Germany shirt/scarf if you have one."},
-        bring:"Water, portable charger, sunglasses, waterproof shell, warm layer, train tickets, match tickets, ID and a small snack."
+        morning:{icon:"🏰",title: MODE==='pair' ? "Nymphenburg" : "Choose your branch",text: MODE==='pair' ? "Comfortable city layers and walking shoes. A light sweater is enough for the morning." : "Munich stayers: normal city layers. Eibsee drivers: add a warm layer and waterproof shell."},
+        midday:{icon:"🚗",title: MODE==='pair' ? "BMW / city sightseeing" : "Munich or Alps",text: MODE==='pair' ? "Likely warmer by midday; a shirt + light layer is enough." : "Munich stayers can shed a layer. Eibsee group should keep the mountain layer handy."},
+        night:{icon:"⚽",title:"Match",text:"Casual layers are fine; add a Germany shirt/scarf if you have one."},
+        bring: MODE==='pair' ? "Phone, portable charger, sunglasses, match tickets, ID, water, and room in your bag for souvenirs." : "Everyone: phone, charger, match tickets, ID. Eibsee group also needs water, warm layer and waterproof shell."
       },
-      timeline:[
-        {time:"~06:45",title:"Airbnb → Hbf",type:"transit",text:"Leave early enough that the group isn't sprinting for the regional train.",route:"Walk to Poccistraße, then X6 to Hauptbahnhof Süd (~11 min on the bus); allow ~25 min door-to-station."},
-        {time:"At Hbf",title:"Breakfast + board train",text:"Use one of the breakfast choices below. Rischart is the logistics winner; Brotraum is a quality detour only if the train timing allows."},
-        {time:"~07:30–09:00",title:"Munich → Garmisch-Partenkirchen",type:"transit",text:"Take the best regional connection shown in DB Navigator.",route:"Plan roughly 1 hr 20 min; verify the exact departure the evening before."},
-        {time:"~09:00–09:45",title:"Garmisch → Eibsee",type:"transit",text:"Transfer to the Bayerische Zugspitzbahn / local mountain transport.",route:"The Eibsee stop is an intermediate stop before the summit route; allow roughly 35–45 min from Garmisch."},
-        {time:"~09:45–14:30",title:"Eibsee + optional Zugspitze",text:"Enjoy the lake first. Only commit to the summit if visibility is strong.",route:"Cable Car Zugspitze from Eibsee to the summit itself takes about 10 min; the full official Zugspitze round trip is a 3–4 hr experience, so watch the clock."},
-        {time:"~14:30–17:30",title:"Return to Munich",type:"transit",text:"Reverse the route. The match means this is not a day to linger into late afternoon."},
-        {time:"17:30–18:30",title:"Quick dinner",text:"Pick one of the fast options below, ideally around Sendlinger Tor/Marienplatz."},
-        {time:"~18:30",title:"City center → Allianz Arena",type:"transit",text:"Start moving early for match-day crowds.",route:"Use U6 toward Fröttmaning. Marienplatz → Fröttmaning is about 16 min, then allow ~15–20 min walking the Esplanade to the stadium."},
+      timelineMunich:[
+        {time:"~08:15",title:"Breakfast in Munich",text:"Use one of the breakfast choices below before starting sightseeing."},
+        {time:"~09:00",title:"Airbnb → Nymphenburg Palace",type:"transit",text:"Head west for a Munich landmark not covered on Wednesday.",route:"Easy route: walk to Poccistraße → X6 to Hauptbahnhof Süd → tram 16/17 toward Schloss Nymphenburg. Allow roughly 40–45 min door-to-palace."},
+        {time:"09:45–11:45",title:"Nymphenburg Palace + grounds",text:"Tour the palace interior and spend some time in the park.",route:"Palace and museums are open 09:00–18:00 on Oct 1. Optional: Marstallmuseum if you want more royal-history content."},
+        {time:"~11:45–12:30",title:"Nymphenburg → lunch",type:"transit",text:"Move toward Maxvorstadt/Olympiapark and pick a lunch option below."},
+        {time:"13:00–15:15",title:"BMW Welt + BMW Museum + Olympiapark",text:"BMW Welt is free; add the museum if you want the deeper history/collection. Walk a short loop through Olympiapark while you're there.",route:"BMW Welt is open all day; BMW Museum is open 10:00–18:00."},
+        {time:"15:15–16:00",title:"Olympiapark → Old Town",type:"transit",text:"Use U3/U-Bahn back toward central Munich."},
+        {time:"16:00–17:15",title:"Souvenir dash + art hunt",text:"Use the Old Town for the original watercolor plus official Wiesn/unique Munich souvenirs.",route:"Best zone: Viktualienmarkt → Dallmayr → Marienplatz / nearby official souvenir options."},
+        {time:"17:20–18:20",title:"Dinner",text:"Pick one of the central quick-but-good options below."},
+        {time:"~18:30",title:"City center → Allianz Arena",type:"transit",text:"Move early for match-day crowds.",route:"U6 toward Fröttmaning. Marienplatz → Fröttmaning is about 16 min, then allow another 15–20 min walking to the stadium."},
+        {time:"20:45",title:"Germany vs Serbia",type:"fixed",text:"Allianz Arena."}
+      ],
+      timelineEibsee:[
+        {time:"~07:15",title:"Breakfast + meet cars",text:"Eat before departure and be ready to drive."},
+        {time:"~07:45",title:"Drive Munich → Eibsee",type:"transit",text:"This branch is by car, not train.",route:"Allow about 1.5 hours each way depending on traffic; official Eibsee guidance estimates Munich → Eibsee at about 1.5 hours by car."},
+        {time:"~09:15–14:15",title:"Eibsee + optional Zugspitze",text:"Enjoy the lake; add Zugspitze only if visibility is worthwhile.",route:"Eibsee Pavillon and Eibsee Alm are both on-site lunch options."},
+        {time:"~14:15–16:00",title:"Drive back to Munich",type:"transit",text:"Leave enough buffer for traffic and the match."},
+        {time:"~16:00–17:30",title:"Reset + quick dinner",text:"Regroup at the Airbnb / central Munich and eat before the stadium."},
+        {time:"~18:30",title:"Munich → Allianz Arena",type:"transit",text:"Use U6 toward Fröttmaning.",route:"Allow stadium walking and security buffer."},
         {time:"20:45",title:"Germany vs Serbia",type:"fixed",text:"Allianz Arena."}
       ],
       meals:{
@@ -116,21 +131,22 @@ const TRIP = {
       label:"Friday · Wiesn I",
       date:"2026-10-02",
       title:"First full Oktoberfest day.",
-      summary:["Easy breakfast + hydrate","Walk into Wiesn around 10:45","Explore grounds before the reservation","Hofbräu 12:00–17:30","Free-form rides/tents/nightlife after"],
+      summary:["Breakfast + Bavarian Outfitters pickup","Change into Tracht","Explore Wiesn before noon","Hofbräu 12:00–17:30","Optional nightlife after"],
       weather:[
         {period:"Morning",time:"09:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:54},
         {period:"Midday",time:"13:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:65},
         {period:"Night",time:"21:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:57}
       ],
       kit:{
-        morning:{icon:"🥨",title:"Breakfast / get ready",text:"Casual clothes for breakfast, then change into Tracht at the Airbnb."},
+        morning:{icon:"🥨",title:"Breakfast + rental pickup",text:"Wear normal casual clothes to breakfast and Bavarian Outfitters; change into Tracht back at the Airbnb."},
         midday:{icon:"🍺",title:"Inside the tent",text:"Lederhosen/Dirndl with the normal shirt/blouse and comfortable shoes. Do not add a heavy sweater inside—the tent gets warm."},
         night:{icon:"🌙",title:"After the tent",text:"Keep a light jacket or sweater at the Airbnb if you expect to come back before going out; otherwise bring a packable layer if it fits your tiny bag."},
         bring:"Very small permitted crossbody/fanny pack, phone, ID, €50–80 cash, card, portable charger and lip balm. Hydrate before you leave."
       },
       timeline:[
-        {time:"08:30–09:30",title:"Breakfast + hydration",text:"Use one of the neighborhood choices below."},
-        {time:"09:30–10:15",title:"Change into Tracht",text:"Get dressed at the Airbnb; no rental pickup stress because it's already handled Wednesday."},
+        {time:"08:15–08:50",title:"Breakfast + hydration",text:"Use one of the neighborhood choices below."},
+        {time:"~09:00",title:"Bavarian Outfitters pickup",type:"fixed",text:"Pick up the reserved Lederhosen/Dirndl at Bavarian Outfitters, Lindwurmstraße 108A.",route:"Walk from the Airbnb; the shop opens at 07:30 on Oktoberfest Fridays. Your reservation is already made."},
+        {time:"09:30–10:15",title:"Back to Airbnb + change into Tracht",text:"Fit check, get dressed, sunscreen, hydration, tiny festival bag only."},
         {time:"~10:25",title:"Airbnb → Theresienwiese",type:"transit",text:"Walk if the weather is fine.",route:"Allow roughly 15–20 min on foot from your Lindwurmstraße base; use live Maps for the nearest festival entrance."},
         {time:"10:45–11:50",title:"Explore the Wiesn",text:"Photos, Bavaria statue, rides, souvenirs and festival orientation before the table."},
         {time:"12:00–17:30",title:"Hofbräu-Festzelt",type:"fixed",text:"Your package includes beer, a meal and dessert.",route:"Treat this as your main lunch and likely your main dinner-calorie block."},
@@ -151,6 +167,11 @@ const TRIP = {
           {rank:"Most likely answer",name:"No separate dinner needed",desc:"The Hofbräu meal + dessert + beer will probably carry you through the evening.",get:"Wait until you're genuinely hungry rather than scheduling dinner."},
           {rank:"Stay inside Wiesn",name:"Festival food stand",desc:"Best if hunger returns while you're still at Oktoberfest.",get:"Sausage, roast chicken, pretzel or another handheld festival food."},
           {rank:"Post-Wiesn sit-down",name:"Andy’s Krablergarten",desc:"Nearby-ish casual option if the group wants a real late meal.",get:"Giant schnitzel.",q:"Andy's Krablergarten Munich"}
+        ],
+        nightlife:[
+          {rank:"Group-interest club",name:"Pacha Munich",desc:"Central glam/house-oriented club open Friday from 22:00; some of the group already wants to try it.",get:"Check that night's DJ/event before committing. VIP/table reservations are available.",q:"Pacha Munich"},
+          {rank:"Best cocktail quality",name:"Zephyr Bar",desc:"Tiny creative cocktail bar; ideal for a small subgroup before/after the festival.",get:"Signature cocktail; treat as walk-in and expect limited space.",q:"Zephyr Bar Munich"},
+          {rank:"Best polished bar",name:"Ory Bar",desc:"Mandarin Oriental cocktail bar with a more upscale, reservable setup.",get:"Reserve if a group wants guaranteed seats.",q:"Ory Bar Munich"}
         ]
       }
     },
@@ -197,6 +218,11 @@ const TRIP = {
           {rank:"Primary plan",name:"Ochsenbraterei meal",desc:"This is your planned dinner and is already included.",get:"Enjoy the included ox-focused meal + dessert + beer."},
           {rank:"If someone dislikes the included meal",name:"Wiesn food stands",desc:"Plenty of quick alternatives remain inside the festival.",get:"Roast chicken, sausage, pretzel or another classic stand item."},
           {rank:"Late fallback",name:"Max’s / Andy’s",desc:"Only if someone somehow needs another real meal after the tent.",get:"Noodles for speed or schnitzel for something heavier.",q:"Sendlinger Tor restaurants Munich"}
+        ],
+        nightlife:[
+          {rank:"Potential final-night club",name:"Pacha Munich",desc:"Open Saturday from 22:00; the obvious option if the group still wants a club night after Ochsenbraterei.",get:"Check the Oktoberfest event/DJ and consider a VIP/table reservation for a larger group.",q:"Pacha Munich"},
+          {rank:"Small-group cocktails",name:"Zephyr Bar",desc:"Creative cocktails, but the space is tiny.",get:"Go only with a small subgroup.",q:"Zephyr Bar Munich"},
+          {rank:"Upscale fallback",name:"Ory Bar",desc:"More polished and much easier to plan for seats.",get:"Reserve ahead if this becomes the chosen post-Wiesn plan.",q:"Ory Bar Munich"}
         ]
       }
     },
@@ -218,7 +244,7 @@ const TRIP = {
       },
       timeline:[
         {time:"~08:00",title:"Breakfast",text:"Pick one of the convenient options below."},
-        {time:"09:00–09:25",title:"Return Tracht",type:"optional",badge:"Assuming rental",text:"Return outfits to Bavarian Outfitters, Lindwurmstraße 108A.",route:"The branch opens Sunday at 09:00. Do this first so the rental is off your plate."},
+        {time:"09:00–09:25",title:"Return Tracht",type:"fixed",text:"Return the reserved outfits to Bavarian Outfitters, Lindwurmstraße 108A.",route:"The shop opens at 09:00 Sunday; Oktoberfest rentals are due by 13:00 on Sundays, so this early return is comfortably within the deadline."},
         {time:"09:25–09:55",title:"Final pack + sweep",text:"Check chargers, bathroom, drawers and fridge."},
         {time:"~10:00",title:"Airbnb → MUC",type:"transit",text:"Start the airport run.",route:"Budget ~25 min to Hbf with luggage, then ~40–45 min on S1/S8 to the airport. With 10 people and luggage, public transit is economical; Uber/taxi is the convenience alternative."},
         {time:"~11:15",title:"Arrive MUC",text:"Comfortable buffer for the 14:05 departure."},
@@ -258,27 +284,64 @@ const PACK = {
    women:["2 short-sleeve tops","2 long-sleeve tops","1 cardigan or sweater","1 light waterproof jacket","1 warmer fleece/sweater for the Alpine day","2 casual bottoms + 1 nicer dinner/bar outfit","Comfortable walking shoes + optional nicer dinner shoe","Dirndl/Tracht set + blouse/apron + comfortable festival shoes","Underwear/socks/tights as needed + 1 spare day","Skincare/hair items, period products, prescriptions, electrolytes, blister care"]
  },
  group:{
-   everyone:["Passport + wallet + cards + some cash","Phone + charging cable + portable charger","European plug adapter","Comfortable walking shoes","2 short-sleeve shirts/tops","2 long-sleeve shirts/tops","1 sweater or sweatshirt","1 light waterproof jacket","1 warmer layer for Eibsee/Zugspitze","2–3 pairs of pants/bottoms","Oktoberfest/Tracht outfit if renting or bringing one","Small crossbody/fanny pack that meets festival restrictions","Sunglasses + toiletries + medications","Electrolytes + blister care"]
+   men:["Passport + wallet + cards + some cash","Phone + charging cable + portable charger","European plug adapter","Comfortable walking shoes","2 short-sleeve shirts","2 long-sleeve shirts","1 sweater or sweatshirt","1 light waterproof jacket","1 warmer layer if going to Eibsee/Zugspitze","2–3 pairs of pants","Lederhosen/Tracht rental reservation or outfit","Small crossbody/fanny pack that meets festival restrictions","Underwear/socks + 1 spare day","Sunglasses + toiletries + medications","Electrolytes + blister care"],
+   women:["Passport + wallet + cards + some cash","Phone + charging cable + portable charger","European plug adapter","Comfortable walking shoes","2 short-sleeve tops","2 long-sleeve tops","1 sweater or cardigan","1 light waterproof jacket","1 warmer layer if going to Eibsee/Zugspitze","2–3 casual bottoms","Dirndl/Tracht rental reservation or outfit","Small crossbody/fanny pack that meets festival restrictions","Underwear/socks/tights as needed + 1 spare day","Skincare/hair items + period products + medications","Electrolytes + blister care"]
  }
 };
 
+const PLACE_META = {
+ "Pfistermühle":{rating:"4.3",reserve:"Reservation recommended"},
+ "Aimy":{rating:"4.1",reserve:"Reservation recommended"},
+ "Wirtshaus in der Au":{rating:"4.4",reserve:"Reservation recommended"},
+ "Augustiner-Keller":{rating:"4.1",reserve:"Reservation recommended"},
+ "Zephyr Bar":{rating:"4.8",reserve:"Walk-in"},
+ "Ory Bar":{rating:"4.1",reserve:"Reservation recommended"},
+ "Ballabeni Ice Cream Stammhaus":{rating:"4.5"},
+ "Rischart at München Hbf":{rating:"3.2"},
+ "Rischart at Hbf":{rating:"3.2"},
+ "Café Frischhut":{rating:"4.4",reserve:"Walk-in"},
+ "Max’s Beef Noodles":{rating:"4.6",reserve:"Walk-in"},
+ "Andy’s Krablergarten":{rating:"4.4",reserve:"Walk-in only"},
+ "Airbräu":{rating:"3.8"},
+ "Mauerer":{rating:"3.8"},
+ "Wimmer":{rating:"4.2"},
+ "ALIS SUPERFOOD":{rating:"4.6",reserve:"Walk-in"},
+ "Eibsee Pavillon":{rating:"3.3",reserve:"Reservations accepted"},
+ "Gasthaus zur Schranne":{rating:"4.3",reserve:"Reservation recommended"},
+ "Pacha Munich":{rating:"2.4",reserve:"VIP/table reservation available"}
+};
+function metaBadges(name){
+ const m=PLACE_META[name]; if(!m) return "";
+ return '<div class="badges placebadges">'+(m.rating?'<span class="badge rating">★ '+m.rating+'</span>':'')+(m.reserve?'<span class="badge reserve">'+m.reserve+'</span>':'')+'</div>';
+}
 function mapsButtons(q){
  const enc=encodeURIComponent(q);
  return '<div class="maps"><a class="mapbtn" href="https://maps.apple.com/?q='+enc+'">Apple</a><a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query='+enc+'">Google</a></div>';
 }
 function renderMeals(meals,id){
- const types=['breakfast','lunch','dinner'];
+ const types=['breakfast','lunch','dinner'].concat(meals.nightlife?['nightlife']:[]);
  let h='<div class="mealTabs">'+types.map((t,i)=>'<button class="mealTab '+(i===0?'on':'')+'" data-meal="'+id+'-'+t+'">'+t[0].toUpperCase()+t.slice(1)+'</button>').join('')+'</div>';
- h+=types.map((t,i)=>'<div class="mealPane '+(i===0?'on':'')+'" id="'+id+'-'+t+'">'+(meals[t]||[]).map(p=>'<div class="placecard"><div class="placeTop"><div><div class="rank">'+p.rank+'</div><h3>'+p.name+'</h3></div>'+(p.q?mapsButtons(p.q):'')+'</div><p>'+p.desc+'</p><p class="get"><b>Recommended:</b> '+p.get+'</p></div>').join('')+'</div>').join('');
+ h+=types.map((t,i)=>'<div class="mealPane '+(i===0?'on':'')+'" id="'+id+'-'+t+'">'+(meals[t]||[]).map(p=>'<div class="placecard"><div class="placeTop"><div><div class="rank">'+p.rank+'</div><h3>'+p.name+'</h3>'+metaBadges(p.name)+'</div>'+(p.q?mapsButtons(p.q):'')+'</div><p>'+p.desc+'</p><p class="get"><b>Recommended:</b> '+p.get+'</p></div>').join('')+'</div>').join('');
  return h;
 }
+function timelineHtml(items){ return '<div class="card timeline">'+items.map(s=>'<div class="stop '+(s.type||'')+'"><div class="mark"></div><div class="time">'+s.time+'</div><h3>'+s.title+'</h3><p>'+s.text+'</p>'+(s.route?'<div class="route"><b>How:</b> '+s.route+'</div>':'')+(s.badge?'<div class="badges"><span class="badge tentative">'+s.badge+'</span></div>':'')+'</div>').join('')+'</div>'; }
+function weatherHtml(list,date,label){
+ return '<div class="card weather"><div class="ey">'+label+'</div><div class="wxgrid">'+list.map(w=>'<div class="wx" data-wx="'+w.time+'|'+w.lat+'|'+w.lon+'|'+date+'"><div class="period">'+w.period+'</div><div class="temp">'+w.fallback+'°</div><div class="cond">Forecast loading</div><div class="place">'+w.place+'</div></div>').join('')+'</div></div>';
+}
 function renderDay(id,d){
+ const splitTimeline=id==='thu';
+ const weatherBlock = splitTimeline && MODE==='group'
+   ? weatherHtml(d.weather,d.date,'Munich stayers · weather')+weatherHtml(d.weatherEibsee,d.date,'Eibsee drivers · weather')
+   : weatherHtml(d.weather,d.date,'Weather by time of day');
+ const timelineBlock = splitTimeline
+   ? '<div class="section">Split timeline</div><div class="splitChoice"><div class="splitLabel">🏙️ Staying in Munich</div>'+timelineHtml(d.timelineMunich)+'</div><div class="splitChoice"><div class="splitLabel">🚗 Driving to Eibsee</div>'+timelineHtml(d.timelineEibsee)+'</div>'
+   : '<div class="section">Timeline</div>'+timelineHtml(d.timeline);
  return '<section id="'+id+'" class="page">'+
  '<div class="card"><div class="ey">'+d.label+'</div><h2>'+d.title+'</h2><div class="summary">'+d.summary.map((s,i)=>'<div class="sum"><div class="num">'+(i+1)+'</div><div>'+s+'</div></div>').join('')+'</div></div>'+
- '<div class="card weather" data-day="'+id+'"><div class="ey">Weather by time of day</div><div class="wxgrid">'+d.weather.map(w=>'<div class="wx" data-wx="'+w.time+'|'+w.lat+'|'+w.lon+'|'+d.date+'"><div class="period">'+w.period+'</div><div class="temp">'+w.fallback+'°</div><div class="cond">Forecast loading</div><div class="place">'+w.place+'</div></div>').join('')+'</div></div>'+
+ weatherBlock+
  '<div class="card daykit"><div class="kithead"><b>What to wear today</b><span>By section of day</span></div><div class="kitparts">'+['morning','midday','night'].map(k=>'<div class="kitpart"><div class="ico">'+d.kit[k].icon+'</div><b>'+d.kit[k].title+'</b><p>'+d.kit[k].text+'</p></div>').join('')+'</div><div class="packbar"><b>Bring when you leave:</b> '+d.kit.bring+'</div></div>'+
- '<div class="section">Timeline <small>just enough logistics</small></div><div class="card timeline">'+d.timeline.map(s=>'<div class="stop '+(s.type||'')+'"><div class="mark"></div><div class="time">'+s.time+'</div><h3>'+s.title+'</h3><p>'+s.text+'</p>'+(s.route?'<div class="route"><b>How:</b> '+s.route+'</div>':'')+(s.badge?'<div class="badges"><span class="badge tentative">'+s.badge+'</span></div>':'')+'</div>').join('')+'</div>'+
- '<div class="section">Food choices <small>3 options when useful</small></div><div class="card">'+renderMeals(d.meals,id)+'</div>'+
+ timelineBlock+
+ '<div class="section">Food & nightlife</div><div class="card">'+renderMeals(d.meals,id)+'</div>'+
  '</section>';
 }
 function renderPrep(){
@@ -296,7 +359,8 @@ function renderPrep(){
  ];
  html+=tasks.map(t=>'<label class="check"><input type="checkbox"><span>'+t+'</span></label>').join('')+'</div>';
  if(MODE==='group'){
-   html+='<div class="section">Group packing <small>plain-language version</small></div><div class="card packsec">'+PACK.group.everyone.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
+   html+='<div class="section">General packing list <small>men</small></div><div class="card packsec">'+PACK.group.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
+   '<div class="section">General packing list <small>women</small></div><div class="card packsec">'+PACK.group.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
  }else{
    html+='<div class="section">Men’s packing</div><div class="card packsec">'+PACK.pair.men.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>'+
    '<div class="section">Women’s packing</div><div class="card packsec">'+PACK.pair.women.map(x=>'<label class="check"><input type="checkbox"><span>'+x+'</span></label>').join('')+'</div>';
