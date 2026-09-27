@@ -61,3 +61,8 @@
 .submitSuggest{width:100%;border:0;background:var(--red);color:#fff;border-radius:14px;padding:12px;font-weight:950;margin-top:4px}
 .suggestNote{font-size:10px;color:var(--muted);line-height:1.4;margin:9px 2px 0}
 body.modalOpen{overflow:hidden}
+
+.stopTop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.stopTop h3{margin-right:auto}
+.stopTop .maps{flex:none}
+.stopTop .mapbtn{padding:6px 7px}
