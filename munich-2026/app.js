@@ -1,6 +1,21 @@
 
 const MODE = window.APP_MODE || 'pair';
 
+const FLIGHTS = {
+  outbound:[
+    {date:"Tue Sep 29",from:"JFK",to:"FRA",depart:"16:25",arrive:"06:10 +1",flight:"DE4305",airline:"Condor"},
+    {date:"Wed Sep 30",from:"FRA",to:"MUC",depart:"07:15",arrive:"08:15",flight:"DE217",airline:"Condor",layover:"1h 05m in Frankfurt"}
+  ],
+  pairReturn:[
+    {date:"Sun Oct 4",from:"MUC",to:"KEF",depart:"14:05",arrive:"16:00",flight:"FI533",airline:"Icelandair"},
+    {date:"Sun Oct 4",from:"KEF",to:"JFK",depart:"~17:00",arrive:"19:20",flight:"FI615",airline:"Icelandair",layover:"1h in Reykjavík"}
+  ],
+  groupReturn:[
+    {date:"Mon Oct 5",from:"MUC",to:"FRA",depart:"09:15",arrive:"10:10",flight:"DE4304",airline:"Condor"},
+    {date:"Mon Oct 5",from:"FRA",to:"JFK",depart:"11:40",arrive:"14:25",flight:"DE216",airline:"Condor",layover:"1h 30m in Frankfurt"}
+  ]
+};
+
 const TRIP = {
   lodging: "Lindwurmstraße 189, 80337 München",
   dates: "Sep 30 – Oct 4",
@@ -229,8 +244,10 @@ const TRIP = {
     sun:{
       label:"Sunday · Departure",
       date:"2026-10-04",
-      title:"Return Tracht, pack, airport.",
-      summary:["Breakfast near the Airbnb or Hbf","Return rental Tracht at 09:00","Final apartment sweep","Leave around 10:00","14:05 flight"],
+      title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : "Kyle + Emma depart; group gets one last Munich day.",
+      summary: MODE==='pair'
+ ? ["Breakfast near the Airbnb","Return rental Tracht at 09:00","Leave for MUC around 10:15","FI533 to Reykjavík at 14:05","FI615 → JFK · arrive 19:20"]
+ : ["Kyle + Emma leave for MUC","Remaining group: final Oktoberfest afternoon","Last souvenir / ride / tent lap","Early-ish night","Group flies Monday morning"],
       weather:[
         {period:"Morning",time:"08:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:49},
         {period:"Midday",time:"12:00",place:"MUC",lat:48.3537,lon:11.7750,fallback:63},
@@ -242,13 +259,24 @@ const TRIP = {
         night:{icon:"🏠",title:"After Munich",text:"No Munich outfit planning needed—this is travel time."},
         bring:"Passport, wallet, phone, charger/portable battery, all luggage. Do a final bathroom/bedroom/outlet sweep before leaving."
       },
-      timeline:[
+      timelinePair:[
         {time:"~08:00",title:"Breakfast",text:"Pick one of the convenient options below."},
-        {time:"09:00–09:25",title:"Return Tracht",type:"fixed",text:"Return the reserved outfits to Bavarian Outfitters, Lindwurmstraße 108A.",route:"The shop opens at 09:00 Sunday; Oktoberfest rentals are due by 13:00 on Sundays, so this early return is comfortably within the deadline."},
-        {time:"09:25–09:55",title:"Final pack + sweep",text:"Check chargers, bathroom, drawers and fridge."},
-        {time:"~10:00",title:"Airbnb → MUC",type:"transit",text:"Start the airport run.",route:"Budget ~25 min to Hbf with luggage, then ~40–45 min on S1/S8 to the airport. With 10 people and luggage, public transit is economical; Uber/taxi is the convenience alternative."},
-        {time:"~11:15",title:"Arrive MUC",text:"Comfortable buffer for the 14:05 departure."},
-        {time:"14:05",title:"Flight out",type:"fixed",text:"Trip complete."}
+        {time:"09:00–09:25",title:"Return Tracht",type:"fixed",text:"Return the reserved outfits to Bavarian Outfitters, Lindwurmstraße 108A.",route:"The shop opens at 09:00 Sunday; returning immediately keeps the airport morning clean."},
+        {time:"09:25–10:00",title:"Final pack + sweep",text:"Check chargers, bathroom, drawers and fridge."},
+        {time:"~10:15",title:"Airbnb → MUC",type:"transit",text:"Leave for the airport with a comfortable buffer.",route:"Use the easiest luggage route available that morning; S-Bahn via Hbf or taxi/Uber."},
+        {time:"~11:30",title:"Arrive MUC",text:"Check bags, security and eat lunch if needed."},
+        {time:"14:05",title:"Munich → Reykjavík",type:"fixed",text:"Icelandair FI533 · arrives KEF 16:00."},
+        {time:"16:00–~17:00",title:"Reykjavík layover",type:"transit",text:"1 hour connection at Keflavík."},
+        {time:"~17:00",title:"Reykjavík → JFK",type:"fixed",text:"Icelandair FI615 · arrives JFK 19:20 Sunday."}
+      ],
+      timelineGroup:[
+        {time:"~08:30",title:"Breakfast",text:"Slow morning after Saturday's tent."},
+        {time:"~10:15",title:"Kyle + Emma leave for MUC",type:"transit",text:"Their trip ends here; the rest of the group keeps the Airbnb through Monday departure."},
+        {time:"11:00–12:30",title:"Easy brunch / reset",text:"Keep the morning relaxed and hydrate."},
+        {time:"~12:30",title:"Head to Oktoberfest closing day",type:"transit",text:"Walk from the Airbnb to Theresienwiese.",route:"This is the final day of Oktoberfest 2026, so use it for anything the group missed rather than adding another major city excursion."},
+        {time:"13:00–17:30",title:"Final Wiesn afternoon",type:"optional",text:"Rides, souvenirs, one last tent/beer-hall lap, Oide Wiesn, food stands and group photos."},
+        {time:"17:30–19:00",title:"Final Munich dinner",text:"Choose something easy and group-friendly from the dinner options."},
+        {time:"19:00–21:00",title:"Pack + low-key final night",text:"No huge club night—the group has an early airport departure Monday."}
       ],
       meals:{
         breakfast:[
@@ -264,6 +292,42 @@ const TRIP = {
         dinner:[
           {rank:"Not a Munich meal",name:"Travel day",desc:"No Munich dinner plan needed after a 14:05 departure.",get:"Handle dinner based on your flight/arrival schedule."}
         ]
+      }
+    },
+    mon:{
+      label:"Monday · Group Departure",
+      date:"2026-10-05",
+      title:"Early airport run.",
+      summary:["Early wake-up","Airbnb → MUC","Condor DE4304 at 09:15","Frankfurt connection","DE216 → JFK"],
+      weather:[
+        {period:"Morning",time:"06:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:47},
+        {period:"Airport",time:"08:00",place:"MUC",lat:48.3537,lon:11.7750,fallback:50},
+        {period:"Midday",time:"12:00",place:"Travel day",lat:48.3537,lon:11.7750,fallback:58}
+      ],
+      kit:{
+        morning:{icon:"🧳",title:"Airport departure",text:"Comfortable travel clothes with an easy outer layer for the cool morning."},
+        midday:{icon:"✈️",title:"Frankfurt connection",text:"Keep passport, wallet, phone and boarding passes easy to access."},
+        night:{icon:"🗽",title:"Arrival day",text:"No Munich outfit planning needed."},
+        bring:"Passport, wallet, all luggage, phone, charger/portable battery, boarding passes and any receipts/items needed for tax refund."
+      },
+      timeline:[
+        {time:"~05:45",title:"Wake + final sweep",text:"No complicated breakfast plan; use snacks/airport food if needed."},
+        {time:"~06:15",title:"Airbnb → MUC",type:"transit",text:"Leave with enough buffer for the 09:15 Condor departure.",route:"With luggage, use the simplest route available that morning: S-Bahn via Hbf or a pre-booked taxi/Uber split across cars."},
+        {time:"~07:15",title:"Arrive MUC",text:"Check bags, security and get breakfast after clearing formalities."},
+        {time:"09:15",title:"MUC → Frankfurt",type:"fixed",text:"Condor DE4304 · arrives FRA 10:10."},
+        {time:"10:10–11:40",title:"Frankfurt layover",type:"transit",text:"1h 30m connection; follow transfer signs for the JFK departure."},
+        {time:"11:40",title:"Frankfurt → JFK",type:"fixed",text:"Condor DE216 · arrives JFK 14:25 local time."}
+      ],
+      meals:{
+        breakfast:[
+          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most Munich-specific final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
+          {rank:"Fastest",name:"Airport bakery",desc:"Use whichever bakery is closest to your gate/terminal.",get:"Pretzel/sandwich + coffee."},
+          {rank:"Bring from Airbnb",name:"Grab-and-go snacks",desc:"Best if nobody wants to risk food timing before the flight.",get:"Water + something simple for the ride to MUC."}
+        ],
+        lunch:[
+          {rank:"Connection meal",name:"Frankfurt Airport",desc:"Use the 1h 30m layover for something quick if security/transfer timing permits.",get:"Grab-and-go rather than a sit-down meal."}
+        ],
+        dinner:[{rank:"Travel day",name:"JFK / home",desc:"No Munich dinner planning needed.",get:"Eat based on arrival plans."}]
       }
     }
   }
@@ -353,10 +417,15 @@ function weatherHtml(list,date,label){
 }
 function renderDay(id,d){
  const splitTimeline=id==='thu';
+ const splitSunday=id==='sun';
  const weatherBlock = splitTimeline && MODE==='group'
    ? weatherHtml(d.weather,d.date,'Munich stayers · weather')+weatherHtml(d.weatherEibsee,d.date,'Eibsee drivers · weather')
    : weatherHtml(d.weather,d.date,'Weather by time of day');
- const timelineBlock = splitTimeline
+ const timelineBlock = splitSunday
+   ? (MODE==='group'
+      ? '<div class="section">Sunday split</div><div class="splitChoice"><div class="splitLabel">✈️ Kyle + Emma</div>'+timelineHtml(d.timelinePair)+'</div><div class="splitChoice"><div class="splitLabel">🍺 Group staying through Monday</div>'+timelineHtml(d.timelineGroup)+'</div>'
+      : '<div class="section">Timeline</div>'+timelineHtml(d.timelinePair))
+   : splitTimeline
    ? (MODE==='group'
       ? '<div class="section">Split timeline</div><div class="splitChoice"><div class="splitLabel">🚗 Driving to Eibsee</div>'+timelineHtml(d.timelineEibsee)+'</div><div class="splitChoice"><div class="splitLabel">🏙️ Staying in Munich</div>'+timelineHtml(d.timelineMunich)+'</div>'
       : '<div class="section">Timeline</div><div class="splitChoice"><div class="splitLabel">🏙️ Staying in Munich</div>'+timelineHtml(d.timelineMunich)+'</div>')
@@ -399,21 +468,29 @@ function renderPack(){
  }
  return html+'</section>';
 }
+function flightRows(rows){
+ return rows.map((f,i)=>'<div class="flightrow"><div class="flightcode">'+f.flight+'</div><div class="flightmain"><b>'+f.from+' → '+f.to+'</b><span>'+f.date+' · '+f.depart+' → '+f.arrive+' · '+f.airline+'</span>'+(f.layover?'<small>'+f.layover+'</small>':'')+'</div></div>').join('');
+}
+function renderFlightsOverview(){
+ const outbound='<div class="section">Flights</div><div class="card flightcard"><div class="ey">Main group outbound</div>'+flightRows(FLIGHTS.outbound)+'</div>';
+ if(MODE==='pair') return outbound+'<div class="card flightcard"><div class="ey">Kyle + Emma return</div>'+flightRows(FLIGHTS.pairReturn)+'</div>';
+ return outbound+'<div class="card flightcard"><div class="ey">Return split</div><div class="subflight">Kyle + Emma · Sunday Oct 4</div>'+flightRows(FLIGHTS.pairReturn)+'<div class="subflight">Main group · Monday Oct 5</div>'+flightRows(FLIGHTS.groupReturn)+'</div>';
+}
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.7</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
- Object.entries(TRIP.days).map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
- '</div></div><div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.8</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
+ '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
 }
 document.addEventListener('DOMContentLoaded',()=>{
- document.getElementById('pages').innerHTML=renderOverview()+renderPrep()+renderPack()+Object.entries(TRIP.days).map(([k,d])=>renderDay(k,d)).join('');
+ document.getElementById('pages').innerHTML=renderOverview()+renderPrep()+renderPack()+Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>renderDay(k,d)).join('');
  const tabs=[...document.querySelectorAll('.tab')],pages=[...document.querySelectorAll('.page')],bottom=[...document.querySelectorAll('.bottom button')];
  function go(id){tabs.forEach(x=>x.classList.toggle('on',x.dataset.p===id));pages.forEach(x=>x.classList.toggle('on',x.id===id));bottom.forEach(x=>x.classList.toggle('on',x.dataset.go===id));localStorage.setItem('munich-page-'+MODE,id);scrollTo(0,0)}
  tabs.forEach(x=>x.onclick=()=>go(x.dataset.p));bottom.forEach(x=>x.onclick=()=>go(x.dataset.go));
  document.querySelectorAll('.mealTab').forEach(b=>b.onclick=()=>{const target=b.dataset.meal;const parent=b.closest('.card');parent.querySelectorAll('.mealTab').forEach(x=>x.classList.remove('on'));parent.querySelectorAll('.mealPane').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(target).classList.add('on')});
  document.querySelectorAll('.page').forEach(page=>page.querySelectorAll('input[type=checkbox]').forEach((x,i)=>{const k='munich-'+MODE+'-'+page.id+'-check-'+i;x.checked=localStorage.getItem(k)==='1';x.onchange=()=>localStorage.setItem(k,x.checked?'1':'0')}));
- const tripMap={'2026-09-30':'wed','2026-10-01':'thu','2026-10-02':'fri','2026-10-03':'sat','2026-10-04':'sun'};
+ const tripMap={'2026-09-30':'wed','2026-10-01':'thu','2026-10-02':'fri','2026-10-03':'sat','2026-10-04':'sun','2026-10-05':'mon'};
  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
  const todayPage=tripMap[today],todayBtn=document.getElementById('todayBtn');if(todayPage)todayBtn.dataset.go=todayPage;
  const saved=localStorage.getItem('munich-page-'+MODE);if(saved&&document.getElementById(saved))go(saved);else if(todayPage)go(todayPage);else go('overview');
