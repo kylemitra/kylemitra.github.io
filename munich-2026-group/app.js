@@ -244,7 +244,7 @@ const TRIP = {
     sun:{
       label:"Sunday · Departure",
       date:"2026-10-04",
-      title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : "Two travelers depart; group gets one last Munich day.",
+      title: MODE==='pair' ? "Return Tracht, pack, Reykjavík connection." : " depart; group gets one last Munich day.",
       summary: MODE==='pair'
  ? ["Breakfast near the Airbnb","Return rental Tracht at 09:00","Leave for MUC around 10:15","FI533 to Reykjavík at 14:05","FI615 → JFK · arrive 19:20"]
  : ["Relaxed final Munich morning","Final Oktoberfest afternoon","Last souvenir / ride / tent lap","Final Munich dinner","Early-ish night before Monday flight"],
@@ -319,7 +319,7 @@ const TRIP = {
       ],
       meals:{
         breakfast:[
-          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most Munich-specific final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
+          {rank:"Best airport option",name:"Airbräu",desc:"If open and timing works after check-in/security, this is the most local final breakfast option.",get:"Coffee + breakfast item; keep it quick.",q:"Airbräu Munich Airport"},
           {rank:"Fastest",name:"Airport bakery",desc:"Use whichever bakery is closest to your gate/terminal.",get:"Pretzel/sandwich + coffee."},
           {rank:"Bring from Airbnb",name:"Grab-and-go snacks",desc:"Best if nobody wants to risk food timing before the flight.",get:"Water + something simple for the ride to MUC."}
         ],
@@ -478,7 +478,7 @@ function renderFlightsOverview(){
 }
 function renderOverview(){
  const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.10</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.10-final</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
