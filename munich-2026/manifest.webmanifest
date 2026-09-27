@@ -5,8 +5,8 @@
   "start_url": "/munich-2026/",
   "scope": "/munich-2026/",
   "display": "standalone",
-  "background_color": "#f3f4f5",
-  "theme_color": "#123a61",
+  "background_color": "#eee9df",
+  "theme_color": "#161616",
   "icons": [
     {
       "src": "/munich-2026/icon.svg",
