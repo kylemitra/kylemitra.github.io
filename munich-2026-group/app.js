@@ -38,7 +38,7 @@ const TRIP = {
       label:"Wednesday · Arrival",
       date:"2026-09-30",
       title:"Land, see Munich, settle in.",
-      summary:["Airport → friends’ hotel bag drop","Hofbräuhaus lunch + Old Town","Return to Geyerstraße for bags","Uber/taxi → Airbnb for 15:00 check-in","Reset + flexible evening"],
+      summary:["Bag drop · Geyerstraße 52","Augustiner lunch","Marienplatz → Frauenkirche → Viktualienmarkt","Back for bags → Uber/taxi to Airbnb","15:00 check-in + reset"],
       weather:[
         {period:"Morning",time:"09:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:54},
         {period:"Midday",time:"13:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:72},
@@ -51,15 +51,19 @@ const TRIP = {
         bring:"Phone, portable charger, sunglasses, light rain shell, water, €20–40 cash, passport/ID. Bags are at the friends’ hotel on Geyerstraße until check-in."
       },
       timeline:[
-        {time:"08:15",title:"Land at MUC",type:"fixed",text:"Arrival at Munich Airport; the group did not go to München Hbf.",route:"Continue with the live plan below."},
-        {time:"~10:30",title:"Drop bags at friends’ hotel",type:"fixed",text:"Bags are stored at Geyerstraße 52, 80469 München for the morning.",route:"Morning bag base until the 15:00 Airbnb check-in."},
-        {time:"~11:00",title:"Hofbräuhaus lunch",text:"Walk into the Old Town and eat at Hofbräuhaus München, Platzl 9.",route:"Use this as the first major Old Town stop; the ground-floor Schwemme is walk-in friendly."},
-        {time:"~12:00–13:30",title:"Old Town highlights",text:"After lunch, keep sightseeing compact: Marienplatz → Frauenkirche → Viktualienmarkt / nearby center.",route:"Stay central so the group can get back to the bags without jeopardizing check-in."},
-        {time:"~13:30",title:"Walk back to Geyerstraße 52",type:"transit",text:"Head back to the friends’ hotel and collect everyone's luggage.",route:"Return directly to Geyerstraße 52 after the Old Town stop."},
-        {time:"~14:15",title:"Geyerstraße → Airbnb",type:"transit",text:"Order Ubers/taxis from Geyerstraße 52 to Lindwurmstraße 189.",route:"With 10 people plus luggage, plan on multiple cars. Leave enough buffer to reach the Airbnb around the 15:00 check-in time."},
+        {time:"08:15",title:"Land at MUC",type:"fixed",text:"Arrival at Munich Airport; the S8 disruption changed the original transfer.",route:"The group did not go to München Hbf."},
+        {time:"~10:30",title:"Bag drop · Geyerstraße 52",type:"fixed",text:"Leave luggage at the friends’ hotel at Geyerstraße 52.",route:"This is the morning bag base until the Airbnb opens at 15:00."},
+        {time:"~11:00",title:"Walk → Augustiner lunch",text:"Walk from Geyerstraße toward the Augustiner lunch stop.",route:"Use live Maps for the exact Augustiner location the group is using; keep the route north toward the Altstadt so sightseeing continues naturally afterward."},
+        {time:"~11:15–12:15",title:"Lunch · Augustiner",type:"fixed",text:"First proper meal in Munich. Keep the stop to about an hour so the Old Town loop fits before check-in.",route:"After lunch, continue on foot toward Marienplatz."},
+        {time:"~12:15–12:30",title:"Walk → Marienplatz",type:"transit",text:"Enter the historic center at Munich’s main square.",route:"At Marienplatz: New Town Hall, Glockenspiel façade, Mariensäule and the Fish Fountain. Spend ~10 minutes for photos rather than doing a tower visit today."},
+        {time:"12:30–12:45",title:"Marienplatz + New Town Hall",text:"See the square, Rathaus façade and Glockenspiel area.",route:"Then walk ~3–5 min west through the pedestrian streets to Frauenkirche."},
+        {time:"12:45–13:00",title:"Frauenkirche",text:"Quick exterior/interior look at Munich’s cathedral and its twin towers.",route:"From Frauenkirche walk ~6–8 min southeast back past Marienplatz toward Viktualienmarkt."},
+        {time:"13:05–13:20",title:"Viktualienmarkt",text:"Walk through Munich’s central food market; good quick stop for photos and browsing.",route:"From the market, start heading south/southwest toward Geyerstraße. Skip extra northern Old Town stops today so luggage pickup stays comfortable."},
+        {time:"~13:20–13:45",title:"Walk back → Geyerstraße 52",type:"transit",text:"Return to the friends’ hotel and collect everyone’s luggage.",route:"Go directly back to Geyerstraße 52; no Hbf stop."},
+        {time:"~14:10–14:20",title:"Uber/taxis → Airbnb",type:"transit",text:"Order multiple cars from Geyerstraße 52 to Lindwurmstraße 189.",route:"With 10 people plus luggage, split across cars and target arrival shortly before/around the 15:00 check-in."},
         {time:"15:00",title:"Check in",type:"fixed",text:"Airbnb · Lindwurmstraße 189. Drop bags and get settled."},
         {time:"15:30–18:00",title:"Shower + nap + reset",text:"Keep the afternoon easy after the disrupted arrival morning."},
-        {time:"~19:00",title:"Dinner",text:"Flexible tonight since Hofbräuhaus is now lunch; choose something different from Bavarian beer-hall food."},
+        {time:"~19:00",title:"Dinner",text:"Flexible tonight; choose something different from the Bavarian lunch."},
         {time:"~21:30+",title:"Cocktails",type:"optional",text:"Split into smaller groups if doing cocktails; Zephyr is tiny, Ory handles a somewhat larger group better."}
       ],
       meals:{
