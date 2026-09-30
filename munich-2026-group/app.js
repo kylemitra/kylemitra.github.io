@@ -48,14 +48,14 @@ const TRIP = {
         morning:{icon:"👕",title:"Arrival + walking",text:"T-shirt or light long-sleeve, comfortable pants, walking shoes. Keep a light layer easy to reach."},
         midday:{icon:"☀️",title:"Old Town",text:"Likely the warmest part of the day. Short sleeves should be comfortable if the forecast holds."},
         night:{icon:"🧥",title:"Dinner + bars",text:"Add a sweater or light jacket. Wear the nicer casual outfit if doing Pfistermühle/Ory."},
-        bring:"Phone, portable charger, sunglasses, light rain shell, water, €20–40 cash, passport/ID. Keep luggage in Hbf lockers until check-in."
+        bring:"Phone, portable charger, sunglasses, light rain shell, water, €20–40 cash, passport/ID. Bags are at the friends’ hotel on Geyerstraße until check-in."
       },
       timeline:[
-        {time:"08:15",title:"Land at MUC",type:"fixed",text:"Arrival complete; the S8 disruption changed the original Hbf-locker plan.",route:"Continue with the live plan below."},
-        {time:"~10:30",title:"Drop bags at friends’ hotel",type:"fixed",text:"Bags are stored at Geyerstraße 52, 80469 München for the morning.",route:"This replaces the original München Hbf locker stop."},
+        {time:"08:15",title:"Land at MUC",type:"fixed",text:"Arrival at Munich Airport; the group did not go to München Hbf.",route:"Continue with the live plan below."},
+        {time:"~10:30",title:"Drop bags at friends’ hotel",type:"fixed",text:"Bags are stored at Geyerstraße 52, 80469 München for the morning.",route:"Morning bag base until the 15:00 Airbnb check-in."},
         {time:"~11:00",title:"Hofbräuhaus lunch",text:"Walk into the Old Town and eat at Hofbräuhaus München, Platzl 9.",route:"Use this as the first major Old Town stop; the ground-floor Schwemme is walk-in friendly."},
         {time:"~12:00–13:30",title:"Old Town highlights",text:"After lunch, keep sightseeing compact: Marienplatz → Frauenkirche → Viktualienmarkt / nearby center.",route:"Stay central so the group can get back to the bags without jeopardizing check-in."},
-        {time:"~13:30",title:"Walk back to Geyerstraße 52",type:"transit",text:"Head back to the friends’ hotel and collect everyone's luggage.",route:"Do not continue toward Hbf; your bags are at Geyerstraße 52."},
+        {time:"~13:30",title:"Walk back to Geyerstraße 52",type:"transit",text:"Head back to the friends’ hotel and collect everyone's luggage.",route:"Return directly to Geyerstraße 52 after the Old Town stop."},
         {time:"~14:15",title:"Geyerstraße → Airbnb",type:"transit",text:"Order Ubers/taxis from Geyerstraße 52 to Lindwurmstraße 189.",route:"With 10 people plus luggage, plan on multiple cars. Leave enough buffer to reach the Airbnb around the 15:00 check-in time."},
         {time:"15:00",title:"Check in",type:"fixed",text:"Airbnb · Lindwurmstraße 189. Drop bags and get settled."},
         {time:"15:30–18:00",title:"Shower + nap + reset",text:"Keep the afternoon easy after the disrupted arrival morning."},
@@ -64,7 +64,7 @@ const TRIP = {
       ],
       meals:{
         breakfast:[
-          {rank:"Best logistics",name:"Rischart at München Hbf",desc:"Munich bakery institution right where you drop bags.",get:"Coffee + pretzel/croissant or a quick savory breakfast.",q:"Rischart München Hauptbahnhof"},
+          {rank:"Best logistics",name:"Rischart at München Hbf",desc:"Station option no longer relevant to today’s live arrival plan.",get:"Coffee + pretzel/croissant or a quick savory breakfast.",q:"Rischart München Hauptbahnhof"},
           {rank:"Best traditional stop",name:"Café Frischhut",desc:"Old-school Munich pastry stop near Viktualienmarkt.",get:"Schmalznudel / Auszogne + coffee.",q:"Cafe Frischhut Munich"},
           {rank:"Most flexible",name:"Viktualienmarkt stalls",desc:"Perfect if 10 people want different things without waiting for one table.",get:"Pretzel, Weißwurst, bakery snack or coffee as you browse.",q:"Viktualienmarkt Munich"}
         ],
