@@ -38,7 +38,7 @@ const TRIP = {
       label:"Wednesday · Arrival",
       date:"2026-09-30",
       title:"Land, see Munich, settle in.",
-      summary:["Airport → Hbf lockers","Essential Old Town loop","Airbnb check-in + reset","Dinner 🍽️ + cocktails 🍸","Flexible first night"],
+      summary:["Airport → friends’ hotel bag drop","Hofbräuhaus lunch + Old Town","Return to Geyerstraße for bags","Uber/taxi → Airbnb for 15:00 check-in","Reset + flexible evening"],
       weather:[
         {period:"Morning",time:"09:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:54},
         {period:"Midday",time:"13:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:72},
@@ -51,15 +51,16 @@ const TRIP = {
         bring:"Phone, portable charger, sunglasses, light rain shell, water, €20–40 cash, passport/ID. Keep luggage in Hbf lockers until check-in."
       },
       timeline:[
-        {time:"08:15",title:"Land at MUC",type:"fixed",text:"Immigration + baggage.",route:"After bags, follow green S-Bahn signs in the airport."},
-        {time:"~09:30",title:"Airport → München Hbf",type:"transit",text:"Take whichever comes first: S1 or S8.",route:"Allow about 40–45 min on the train. For the 10-person group, public transit is easier than coordinating multiple cars."},
-        {time:"~10:20",title:"Hbf lockers",type:"transit",text:"Store luggage, get €1/€2 coins, then start the day hands-free.",route:"You are now about a 15–20 min walk from Marienplatz."},
-        {time:"10:45–14:10",title:"Essential Old Town loop",text:"Karlsplatz → Frauenkirche → Marienplatz/Glockenspiel → Viktualienmarkt → Asamkirche → Hofbräuhaus → Odeonsplatz → Residenz/Hofgarten.",route:"Mostly walking. Eat lunch while moving through the center."},
-        {time:"~14:15",title:"Hbf → Airbnb",type:"transit",text:"Collect bags and head south to Lindwurmstraße 189.",route:"Simple luggage route: X6 from Hauptbahnhof Süd toward Poccistraße is about 11 min, then a short walk. With lots of bags, Uber/taxi is a reasonable convenience option."},
-        {time:"15:00",title:"Check in",type:"fixed",text:"Drop bags and get settled."},
-        {time:"15:30–18:00",title:"Shower + nap + reset",text:"Protect the energy for the rest of the trip."},
-        {time:"~19:00",title:"Dinner",text: MODE==='pair' ? "Best slot for a small-group / date-night meal." : "Best open night for a proper group or small-group Munich dinner."},
-        {time:"~21:30+",title:"Cocktails",type:"optional",text: MODE==='pair' ? "Zephyr for 2–4; Ory as the polished reservable fallback." : "Split into smaller groups if doing cocktails; Zephyr is tiny, Ory handles a somewhat larger group better."}
+        {time:"08:15",title:"Land at MUC",type:"fixed",text:"Arrival complete; the S8 disruption changed the original Hbf-locker plan.",route:"Continue with the live plan below."},
+        {time:"~10:30",title:"Drop bags at friends’ hotel",type:"fixed",text:"Bags are stored at Geyerstraße 52, 80469 München for the morning.",route:"This replaces the original München Hbf locker stop."},
+        {time:"~11:00",title:"Hofbräuhaus lunch",text:"Walk into the Old Town and eat at Hofbräuhaus München, Platzl 9.",route:"Use this as the first major Old Town stop; the ground-floor Schwemme is walk-in friendly."},
+        {time:"~12:00–13:30",title:"Old Town highlights",text:"After lunch, keep sightseeing compact: Marienplatz → Frauenkirche → Viktualienmarkt / nearby center.",route:"Stay central so the group can get back to the bags without jeopardizing check-in."},
+        {time:"~13:30",title:"Walk back to Geyerstraße 52",type:"transit",text:"Head back to the friends’ hotel and collect everyone's luggage.",route:"Do not continue toward Hbf; your bags are at Geyerstraße 52."},
+        {time:"~14:15",title:"Geyerstraße → Airbnb",type:"transit",text:"Order Ubers/taxis from Geyerstraße 52 to Lindwurmstraße 189.",route:"With 10 people plus luggage, plan on multiple cars. Leave enough buffer to reach the Airbnb around the 15:00 check-in time."},
+        {time:"15:00",title:"Check in",type:"fixed",text:"Airbnb · Lindwurmstraße 189. Drop bags and get settled."},
+        {time:"15:30–18:00",title:"Shower + nap + reset",text:"Keep the afternoon easy after the disrupted arrival morning."},
+        {time:"~19:00",title:"Dinner",text:"Flexible tonight since Hofbräuhaus is now lunch; choose something different from Bavarian beer-hall food."},
+        {time:"~21:30+",title:"Cocktails",type:"optional",text:"Split into smaller groups if doing cocktails; Zephyr is tiny, Ory handles a somewhat larger group better."}
       ],
       meals:{
         breakfast:[
