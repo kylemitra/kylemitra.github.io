@@ -81,11 +81,11 @@ const TRIP = {
       }
     },
     thu:{
-      label:"Thursday · Alps + Match",
+      label:"Thursday · Old Town + Match",
       date:"2026-10-01",
       title: MODE==='pair' ? "Munich tourist day, then Allianz Arena." : "Split day: Alps or Munich, then the match.",
       summary: MODE==='pair'
- ? ["Nymphenburg Palace","BMW Welt + Olympiapark","Souvenir dash + art hunt","Dinner in central Munich","Germany–Serbia at 20:45"]
+ ? ["Quick lunch near Airbnb","Old Town essentials on foot","Souvenirs + local art","Residenz + Odeonsplatz","Germany–Serbia at 20:45"]
  : ["Split: Eibsee road trip OR Munich tourist day","Meet back in Munich by ~17:30","Dinner before the match","Germany–Serbia at 20:45"],
       weather:[
         {period:"Morning",time:"09:00",place:"Munich",lat:48.1351,lon:11.5820,fallback:55},
@@ -104,16 +104,21 @@ const TRIP = {
         bring: MODE==='pair' ? "Phone, portable charger, sunglasses, match tickets, ID, water, and room in your bag for souvenirs." : "Everyone: phone, charger, match tickets, ID. Eibsee group also needs water, warm layer and waterproof shell."
       },
       timelineMunich:[
-        {time:"~08:15",title:"Breakfast in Munich",text:"Use one of the breakfast choices below before starting sightseeing."},
-        {time:"~09:00",title:"Airbnb → Nymphenburg Palace",type:"transit",text:"Head west for a Munich landmark not covered on Wednesday.",route:"Easy route: walk to Poccistraße → X6 to Hauptbahnhof Süd → tram 16/17 toward Schloss Nymphenburg. Allow roughly 40–45 min door-to-palace.",q:"Nymphenburg Palace Munich"},
-        {time:"09:45–11:45",title:"Nymphenburg Palace + grounds",text:"Tour the palace interior and spend some time in the park.",route:"Palace and museums are open 09:00–18:00 on Oct 1. Optional: Marstallmuseum if you want more royal-history content."},
-        {time:"~11:45–12:30",title:"Nymphenburg → lunch",type:"transit",text:"Move toward Maxvorstadt/Olympiapark and pick a lunch option below."},
-        {time:"13:00–15:15",title:"BMW Welt + BMW Museum + Olympiapark",text:"BMW Welt is free; add the museum if you want the deeper history/collection. Walk a short loop through Olympiapark while you're there.",route:"BMW Welt is open all day; BMW Museum is open 10:00–18:00.",q:"BMW Welt Munich"},
-        {time:"15:15–16:00",title:"Olympiapark → Old Town",type:"transit",text:"Use U3/U-Bahn back toward central Munich."},
-        {time:"16:00–17:15",title:"Souvenir dash + art hunt",text:"Use the Old Town for the original watercolor plus official Wiesn/unique Munich souvenirs.",route:"Best zone: Viktualienmarkt → Dallmayr → Marienplatz / nearby official souvenir options.",q:"Viktualienmarkt Munich"},
-        {time:"17:20–18:20",title:"Dinner",text:"Pick one of the central quick-but-good options below."},
-        {time:"~18:30",title:"City center → Allianz Arena",type:"transit",text:"Move early for match-day crowds.",route:"U6 toward Fröttmaning. Marienplatz → Fröttmaning is about 16 min, then allow another 15–20 min walking to the stadium.",q:"Allianz Arena Munich"},
-        {time:"20:45",title:"Germany vs Serbia",type:"fixed",text:"Allianz Arena."}
+        {time:"13:00",title:"Leave Airbnb → quick lunch",type:"transit",text:"Eat immediately near Lindwurmstraße so sightseeing time is not burned on a destination lunch.",route:"Walk to a nearby quick option; keep lunch to ~35–40 min. Stenz at Lindwurmstraße 122 is close and open today.",q:"Stenz Lindwurmstraße 122 Munich"},
+        {time:"13:40",title:"U-Bahn → Sendlinger Tor",type:"transit",text:"Start the sightseeing loop at the southwest edge of Old Town.",route:"Walk to Poccistraße, take U3/U6 to Sendlinger Tor, then stay on foot through the Altstadt.",q:"Sendlinger Tor Munich"},
+        {time:"14:00–14:15",title:"Sendlinger Tor → Asamkirche",text:"Walk through Sendlinger Straße and step inside the tiny, intensely decorated Baroque Asamkirche.",route:"~8 min walk from Sendlinger Tor. Keep the church stop short, then continue northeast on Sendlinger Straße.",q:"Asamkirche Munich"},
+        {time:"14:15–14:30",title:"Walk → Marienplatz",type:"transit",text:"Continue through the pedestrian Old Town to Munich’s central square.",route:"~10 min on foot. See Neues Rathaus, Glockenspiel façade, Mariensäule, Fischbrunnen and Altes Rathaus.",q:"Marienplatz Munich"},
+        {time:"14:30–14:50",title:"Marienplatz essentials",text:"Take the main photos and orient yourselves in the historic center.",route:"Do not spend time on a tower here; save the limited afternoon for more sights and shopping."},
+        {time:"14:50–15:20",title:"Souvenirs · Marienplatz",text:"Prioritize the official 2026 Oktoberfest souvenir first so it cannot get squeezed out later.",route:"Use the Oktoberfest City Shop at the Marienplatz Tourist Information. Target: official 2026 collector stein and/or official Wiesn poster.",q:"Tourist Information Marienplatz Munich"},
+        {time:"15:20–15:40",title:"Walk → Frauenkirche + interior",text:"See Munich’s iconic twin-domed cathedral and step inside.",route:"~3–5 min from Marienplatz. The cathedral is open today; keep this to ~15 min.",q:"Frauenkirche Munich"},
+        {time:"15:40–16:05",title:"Walk → Viktualienmarkt",type:"transit",text:"Return through Marienplatz to the market for a quick browse and local atmosphere.",route:"~7 min walk. Look for a signed local Munich watercolor/art while browsing; individual stall hours vary.",q:"Viktualienmarkt Munich"},
+        {time:"16:05–16:25",title:"Viktualienmarkt + art hunt",text:"See the maypole, market lanes and food stalls while looking for a compact original Munich artwork.",route:"If you find the right watercolor, buy it now rather than planning to return later."},
+        {time:"16:25–16:40",title:"Walk → Platzl + Alter Hof",type:"transit",text:"Pass the Hofbräuhaus/Platzl area, then continue through the medieval Alter Hof.",route:"~5 min to Platzl, then another ~5 min to Alter Hof. Exterior/photo stops only today.",q:"Alter Hof Munich"},
+        {time:"16:40–17:15",title:"Residenz exterior + Hofgarten",text:"Continue north to Munich Residenz, Max-Joseph-Platz and the Hofgarten.",route:"Walk ~5–8 min from Alter Hof. With today's time limit, prioritize courtyards/exterior/Hofgarten instead of a full museum visit.",q:"Munich Residenz"},
+        {time:"17:15–17:35",title:"Odeonsplatz + Feldherrnhalle",text:"Finish the Old Town route at Odeonsplatz: Feldherrnhalle, Theatinerkirche exterior and Hofgarten edge.",route:"This deliberately ends near an easy U6 connection for the stadium.",q:"Odeonsplatz Munich"},
+        {time:"17:35–18:05",title:"Early food / stadium fuel",text:"Eat before heading north so you are not relying on stadium food for dinner.",route:"Keep it fast and stay near Odeonsplatz/Marienplatz or grab something to-go."},
+        {time:"~18:10",title:"U6 → Fröttmaning",type:"transit",text:"Head to Allianz Arena well before kickoff.",route:"Take U6 north toward Garching-Forschungszentrum and exit Fröttmaning. Stadium gates open 18:45; allow ~15–20 min to walk the Esplanade after the train.",q:"Allianz Arena Munich"},
+        {time:"20:45",title:"Germany vs Serbia",type:"fixed",text:"UEFA Nations League · Allianz Arena."}
       ],
       timelineEibsee:[
         {time:"~07:15",title:"Breakfast + meet cars",text:"Eat before departure and be ready to drive."},
