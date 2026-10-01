@@ -480,8 +480,8 @@ function renderFlightsOverview(){
  return outbound+'<div class="card flightcard"><div class="ey">Group return to New York</div>'+flightRows(FLIGHTS.groupReturn)+'</div>';
 }
 function renderOverview(){
- const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary';
- return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build 2026.09.27.13</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
+ const modeNote=MODE==='group'?'Shared group itinerary':'Pair / personal itinerary · LIVE OCT 1';
+ return '<section id="overview" class="page on"><div class="card"><div class="ey">'+modeNote+' · Build LIVE · Oct 1 · 15:15 route</div><h2>Munich + Oktoberfest</h2><div class="summary">'+
  Object.entries(TRIP.days).filter(([k])=>MODE==='group'||k!=='mon').map(([k,d])=>'<div class="sum"><div class="num">'+d.label.split(' ')[0][0]+'</div><div><b>'+d.label+'</b><br><small>'+d.summary.slice(0,3).join(' · ')+'</small></div></div>').join('')+
  '</div></div>'+renderFlightsOverview()+'<div class="section">Fixed time activities</div><div class="card"><div class="fixedGrid">'+TRIP.fixed.map(x=>'<div class="fixedCard"><div class="ico">'+x[0]+'</div><b>'+x[1]+'</b><span>'+x[2]+'</span></div>').join('')+'</div></div>'+
  '<div class="section">Souvenir ideas</div><div class="card">'+TRIP.souvenirs.map(s=>'<div class="souvenir"><div class="ico">'+s.icon+'</div><div><b>'+s.name+'</b><span>'+s.detail+'</span></div></div>').join('')+'</div></section>';
